@@ -46,12 +46,12 @@ public class CategoryDirectory {
 		}
 		return null;
 	}
-	
-	public void addCategory(SneakerCategory category){
+
+	public void addCategory(SneakerCategory category) {
 		mCategories.add(category);
 		saveCategories();
 	}
-	
+
 	public boolean saveCategories() {
 		try {
 			mSerializer.saveCategories(mCategories);
@@ -62,8 +62,8 @@ public class CategoryDirectory {
 			return false;
 		}
 	}
-	
-	public ArrayList<SneakerCategory> getCategories(){
+
+	public ArrayList<SneakerCategory> getCategories() {
 		return this.mCategories;
 	}
 }

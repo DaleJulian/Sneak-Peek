@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 				"Jordan Brand, Kobe, Lebrons.."));
 
 		SneakerCategoryAdapter adapter = new SneakerCategoryAdapter(this,
-				R.layout.sneaker_category_layout, mCategories);
+				R.layout.sneaker_category_listitem, mCategories);
 		categoryList = (ListView) findViewById(R.id.listSneakercategory);
 		categoryList.setAdapter(adapter);
 	}
