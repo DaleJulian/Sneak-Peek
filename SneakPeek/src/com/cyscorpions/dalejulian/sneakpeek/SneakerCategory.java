@@ -22,6 +22,11 @@ public class SneakerCategory {
 	// not yet implemented(low prio)
 	// private SneakPeekPhoto mIcon;
 
+	public SneakerCategory(String name, String desc){
+		mName = name;
+		mDescription = desc;
+	}
+	
 	public SneakerCategory() {
 		mId = UUID.randomUUID();
 	}

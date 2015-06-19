@@ -28,7 +28,7 @@ public class SneakerDirectory {
 		}
 	}
 
-	private static SneakerDirectory get(Context appContext) {
+	public static SneakerDirectory get(Context appContext) {
 		if (sSneakerDirectory == null) {
 			sSneakerDirectory = new SneakerDirectory(
 					appContext.getApplicationContext());
@@ -61,4 +61,7 @@ public class SneakerDirectory {
 		}
 	}
 
+	public ArrayList<Sneaker> getSneakers(){
+		return this.mSneakers;
+	}
 }
