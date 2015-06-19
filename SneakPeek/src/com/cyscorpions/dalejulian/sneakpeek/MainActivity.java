@@ -3,7 +3,7 @@ package com.cyscorpions.dalejulian.sneakpeek;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +13,6 @@ public class MainActivity extends Activity {
 
 	private ListView categoryList;
 	private ArrayList<SneakerCategory> mCategories;
-	private CategoryDirectory mCategs;
 	private SneakerCategoryAdapter adapter;
 
 	@Override
@@ -24,15 +23,6 @@ public class MainActivity extends Activity {
 
 		mCategories = CategoryDirectory.get(getApplicationContext())
 				.getCategories();
-
-		// mCategories.add(new SneakerCategory("Basketball",
-		// "Jordan Brand, Kobe, Lebrons.."));
-		// mCategories.add(new SneakerCategory("Skateboarding",
-		// "Nike SB, Supra, Emerica, DC..."));
-		// mCategories.add(new SneakerCategory("Running",
-		// "Nike Free Runs, Adidas Pure Boosts, Under Armour..."));
-		// mCategories.add(new SneakerCategory("Designer",
-		// "Saint Laurent, Buscemi, Balenciagas..."));
 
 		adapter = new SneakerCategoryAdapter(this,
 				R.layout.sneaker_category_listitem, mCategories);
@@ -65,6 +55,8 @@ public class MainActivity extends Activity {
 					new SneakerCategory("Fancy", "Margiela.."));
 			// ((SneakerCategoryAdapter)getListAdapter()).notifyDataSetChanged();
 			adapter.notifyDataSetChanged();
+			Intent i = new Intent(MainActivity.this, SneakerEntryList.class);
+			startActivity(i);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
