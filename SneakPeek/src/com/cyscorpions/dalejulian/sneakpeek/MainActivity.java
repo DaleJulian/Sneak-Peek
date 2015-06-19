@@ -1,8 +1,6 @@
 package com.cyscorpions.dalejulian.sneakpeek;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,21 +16,19 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		setTitle("Sneak Peek: Categories");
 
 		mCategories = CategoryDirectory.get(getApplicationContext())
 				.getCategories();
+
 		mCategories.add(new SneakerCategory("Basketball",
 				"Jordan Brand, Kobe, Lebrons.."));
-		mCategories.add(new SneakerCategory("Basketball",
-				"Jordan Brand, Kobe, Lebrons.."));
-		mCategories.add(new SneakerCategory("Basketball",
-				"Jordan Brand, Kobe, Lebrons.."));
-		mCategories.add(new SneakerCategory("Basketball",
-				"Jordan Brand, Kobe, Lebrons.."));
-		mCategories.add(new SneakerCategory("Basketball",
-				"Jordan Brand, Kobe, Lebrons.."));
-		mCategories.add(new SneakerCategory("Basketball",
-				"Jordan Brand, Kobe, Lebrons.."));
+		mCategories.add(new SneakerCategory("Skateboarding",
+				"Nike SB, Supra, Emerica, DC..."));
+		mCategories.add(new SneakerCategory("Running",
+				"Nike Free Runs, Adidas Pure Boosts, Under Armour..."));
+		mCategories.add(new SneakerCategory("Designer",
+				"Saint Laurent, Buscemi, Balenciagas..."));
 
 		SneakerCategoryAdapter adapter = new SneakerCategoryAdapter(this,
 				R.layout.sneaker_category_listitem, mCategories);
