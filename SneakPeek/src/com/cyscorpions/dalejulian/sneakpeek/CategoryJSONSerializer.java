@@ -29,6 +29,14 @@ public class CategoryJSONSerializer {
 	public ArrayList<SneakerCategory> loadCategories() throws JSONException,
 			IOException {
 		ArrayList<SneakerCategory> categories = new ArrayList<SneakerCategory>();
+		categories.add(new SneakerCategory("Basketball",
+				"Air Jordans, Lebrons, Kobes.."));
+		categories.add(new SneakerCategory("Running",
+				"Nike Air Max, Adidas Pure Boost, Under Armour.."));
+		categories.add(new SneakerCategory("Skateboarding",
+				"NikeSB, Emerica, DC Shoes.."));
+		categories.add(new SneakerCategory("Designer",
+				"Balenciaga, Maison Martin,  Saint Laurent.."));
 		BufferedReader reader = null;
 		try {
 			InputStream in = mContext.openFileInput(mFileName);
@@ -72,5 +80,6 @@ public class CategoryJSONSerializer {
 				writer.close();
 			}
 		}
+
 	}
 }
