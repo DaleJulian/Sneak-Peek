@@ -46,6 +46,15 @@ public class CategoryDirectory {
 		}
 		return null;
 	}
+	
+	public SneakerCategory getCategory(String categoryName) {
+		for(SneakerCategory category : mCategories) {
+			if(category.getName().equals(categoryName)) {
+				return category;
+			}
+		}
+		return null;
+	}
 
 	public void addCategory(SneakerCategory category) {
 		mCategories.add(category);

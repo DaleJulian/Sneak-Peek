@@ -28,6 +28,104 @@ public class SneakerJSONSerializer {
 
 	public ArrayList<Sneaker> loadSneakers() throws IOException, JSONException {
 		ArrayList<Sneaker> sneakers = new ArrayList<Sneaker>();
+		sneakers.add(new Sneaker(
+				"IV Undefeated",
+				"Air Jordan",
+				SneakerRarity.HyperStrike,
+				"$5,000",
+				"A very limited release made by Jordan Brand in collaboration with UNDFTD.",
+				CategoryDirectory.get(mContext).getCategory("Basketball"),
+				R.drawable.jordanivundefeated));
+
+		sneakers.add(new Sneaker(
+				"X What the MVP",
+				"Lebron",
+				SneakerRarity.HyperStrike,
+				"$3000",
+				"A 'What The' sneaker that incorporates designs from other Lebron sneakers",
+				CategoryDirectory.get(mContext).getCategory("Basketball"),
+				R.drawable.lbj10whatthemvp));
+
+		sneakers.add(new Sneaker("Max 90 Beaches of Rio", "Nike Air",
+				SneakerRarity.GeneralRelease, "$45,000",
+				"One of AM90's neckbreakers in terms of color combination.",
+				CategoryDirectory.get(mContext).getCategory("Running"),
+				R.drawable.nikeairmax90beachesofrio));
+
+		sneakers.add(new Sneaker("Diamond Dunk Lows", "Nike SB",
+				SneakerRarity.HyperStrike, "$45,000",
+				"One of the most sought after dunks released in 2005.",
+				CategoryDirectory.get(mContext).getCategory("Skateboarding"),
+				R.drawable.nikesbdunklowtiffany));
+
+		sneakers.add(new Sneaker("Paris", "Nike SB", SneakerRarity.HyperStrike,
+				"$2,000", "The most wanted pair among the 'City Pack' Series",
+				CategoryDirectory.get(mContext).getCategory("Skateboarding"),
+				R.drawable.nikesbparis));
+
+		sneakers.add(new Sneaker(
+				"Stefan Janoski Michael Lau",
+				"Nike SB",
+				SneakerRarity.HyperStrike,
+				"$1,000",
+				"Designed by a Toy Creator, Michael Lau, this Stefan Janoski shoe is the most expensive SJ of all time.",
+				CategoryDirectory.get(mContext).getCategory("Skateboarding"),
+				R.drawable.nikesbjanoskimichaellau));
+
+		sneakers.add(new Sneaker(
+				"Max 1 Atmos Elephant",
+				"Nike Air",
+				SneakerRarity.HyperStrike,
+				"$2,000",
+				"A part of the 'Animal Series' Pack of the Atmos Collection, this sneaker is inspired by elephant tusks.",
+				CategoryDirectory.get(mContext).getCategory("Running"),
+				R.drawable.nikeairmax1atmoselephant));
+
+		sneakers.add(new Sneaker(
+				"Burger",
+				"Saucony x End",
+				SneakerRarity.HyperStrike,
+				"$2,000",
+				"A collaboration between Saucony and END, this sneaker incorporates the colors of an old classic American hamburger.",
+				CategoryDirectory.get(mContext).getCategory("Running"),
+				R.drawable.sauconyendburger));
+
+		sneakers.add(new Sneaker(
+				"VI Doernbecher",
+				"Air Jordan",
+				SneakerRarity.HyperStrike,
+				"$2,000",
+				"A glow-in-the-dark sneaker which is a part of the Doernbecher series in which all sales will go to a Hospital for children with chronic illness.",
+				CategoryDirectory.get(mContext).getCategory("Basketball"),
+				R.drawable.airjordan6db));
+		
+		sneakers.add(new Sneaker(
+				"Heinekens",
+				"Nike SB",
+				SneakerRarity.HyperStrike,
+				"$2,000",
+				"A discontinued sneaker due to copyright infringment case filed by Heineken against Nike. Only a few pairs got sold before the case has been filed.",
+				CategoryDirectory.get(mContext).getCategory("Skateboarding"),
+				R.drawable.nikesbheineken));
+		
+		sneakers.add(new Sneaker(
+				"Supreme Dunk Lows",
+				"Nike SB",
+				SneakerRarity.HyperStrike,
+				"$5,000",
+				"A very rare sneaker and the most sought after among the Supreme Dunk Low series.",
+				CategoryDirectory.get(mContext).getCategory("Skateboarding"),
+				R.drawable.nikesbsupremedunklows));
+		
+		sneakers.add(new Sneaker(
+				"Arenas Red",
+				"Balenciagas",
+				SneakerRarity.HyperStrike,
+				"$5,000",
+				"A sneaker often seen worn by Kanye West, Usher and Jaden Smith.",
+				CategoryDirectory.get(mContext).getCategory("Designer"),
+				R.drawable.balenciagaarenared));
+
 		BufferedReader reader = null;
 		try {
 			InputStream in = mContext.openFileInput(mFileName);

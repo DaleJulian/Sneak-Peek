@@ -5,15 +5,19 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class MainActivity extends Activity {
-
-	private ListView categoryList;
+public class MainActivity extends Activity implements OnItemClickListener {
+	public static final String CATEGORY_EXTRA = "Category Extra";
+	private ListView mCategoryList;
 	private ArrayList<SneakerCategory> mCategories;
-	private SneakerCategoryAdapter adapter;
+	private SneakerCategoryAdapter mAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +28,11 @@ public class MainActivity extends Activity {
 		mCategories = CategoryDirectory.get(getApplicationContext())
 				.getCategories();
 
-		adapter = new SneakerCategoryAdapter(this,
+		mAdapter = new SneakerCategoryAdapter(this,
 				R.layout.sneaker_category_listitem, mCategories);
-		categoryList = (ListView) findViewById(R.id.listSneakercategory);
-		categoryList.setAdapter(adapter);
+		mCategoryList = (ListView) findViewById(R.id.listSneakercategory);
+		mCategoryList.setAdapter(mAdapter);
+		mCategoryList.setOnItemClickListener(this);
 
 	}
 
@@ -53,12 +58,21 @@ public class MainActivity extends Activity {
 		if (id == R.id.action_settings) {
 			CategoryDirectory.get(getApplicationContext()).addCategory(
 					new SneakerCategory("Fancy", "Margiela.."));
-			// ((SneakerCategoryAdapter)getListAdapter()).notifyDataSetChanged();
-			adapter.notifyDataSetChanged();
+			mAdapter.notifyDataSetChanged();
 			Intent i = new Intent(MainActivity.this, SneakerEntryList.class);
 			startActivity(i);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		Intent i = new Intent(MainActivity.this, SneakerEntryList.class);
+		i.putExtra(CATEGORY_EXTRA, mCategories.get(position).getName());
+		//Log.i("MainActivity", mCategories.get(position).getName());
+		startActivity(i);
+
 	}
 }

@@ -17,16 +17,14 @@ public class SneakerCategory {
 	private String mName;
 	private String mDescription;
 
-	private ArrayList<Sneaker> mSneakers;
-
 	// not yet implemented(low prio)
 	// private SneakPeekPhoto mIcon;
 
-	public SneakerCategory(String name, String desc){
+	public SneakerCategory(String name, String desc) {
 		mName = name;
 		mDescription = desc;
 	}
-	
+
 	public SneakerCategory() {
 		mId = UUID.randomUUID();
 	}

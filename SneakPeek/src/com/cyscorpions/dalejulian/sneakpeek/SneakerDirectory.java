@@ -22,6 +22,7 @@ public class SneakerDirectory {
 
 		try {
 			mSneakers = mSerializer.loadSneakers();
+
 		} catch (Exception e) {
 			mSneakers = new ArrayList<Sneaker>();
 			Log.e(TAG, "Error loading sneakers");
@@ -61,7 +62,17 @@ public class SneakerDirectory {
 		}
 	}
 
-	public ArrayList<Sneaker> getSneakers(){
+	public ArrayList<Sneaker> getAllSneakers() {
 		return this.mSneakers;
+	}
+
+	public ArrayList<Sneaker> getSneakersByCategory(String categoryName) {
+		ArrayList<Sneaker> temp = new ArrayList<Sneaker>();
+		for (Sneaker sneak : mSneakers) {
+			if (sneak.getCategory().getName().equals(categoryName)) {
+				temp.add(sneak);
+			}
+		}
+		return temp;
 	}
 }

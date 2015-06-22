@@ -14,6 +14,8 @@ public class Sneaker {
 	private static final String JSON_RARITY = null;
 	private static final String JSON_SELLINGVALUE = "sellingvalue";
 	private static final String JSON_DESCRIPTION = "description";
+	private static final String JSON_CATEGORY = null;
+	private static final String JSON_IMAGE = "image";
 
 	private UUID mId;
 	// private SneakerPhoto mPhoto;
@@ -23,6 +25,8 @@ public class Sneaker {
 	private SneakerRarity mRarity;
 	private String mSellingValue;
 	private String mDescription;
+	private SneakerCategory mCategory = null;
+	private int mThumbnailId;
 
 	public Sneaker(JSONObject json) throws JSONException {
 		mId = UUID.fromString(json.getString(JSON_ID));
@@ -31,7 +35,7 @@ public class Sneaker {
 		mRarity = SneakerRarity.valueOf(json.getString(JSON_RARITY));
 		mSellingValue = json.getString(JSON_SELLINGVALUE);
 		mDescription = json.getString(JSON_DESCRIPTION);
-
+		mCategory.setName(json.getString(JSON_CATEGORY));
 	}
 
 	public JSONObject toJSON() throws JSONException {
@@ -42,11 +46,26 @@ public class Sneaker {
 		json.put(JSON_RARITY, mRarity.toString());
 		json.put(JSON_SELLINGVALUE, mSellingValue);
 		json.put(JSON_DESCRIPTION, mDescription);
+		json.put(JSON_CATEGORY, mCategory.getName());
 		return json;
 	}
 
-	public Sneaker() {
+	public Sneaker(String name) {
+		mName = name;
 		mId = UUID.randomUUID();
+
+	}
+
+	public Sneaker(String name, String brand, SneakerRarity rarity,
+			String sellValue, String desc, SneakerCategory category, int imageResId) {
+		mName = name;
+		mBrand = brand;
+		mRarity = rarity;
+		mSellingValue = sellValue;
+		mDescription = desc;
+		mId = UUID.randomUUID();
+		mCategory = category;
+		mThumbnailId = imageResId;
 	}
 
 	public UUID getId() {
@@ -57,7 +76,7 @@ public class Sneaker {
 		return this.mName;
 	}
 
-	public void setname(String name) {
+	public void setName(String name) {
 		this.mName = name;
 	}
 
@@ -85,7 +104,7 @@ public class Sneaker {
 		this.mSellingValue = value;
 	}
 
-	private String getDescription() {
+	public String getDescription() {
 		return this.mDescription;
 	}
 
@@ -93,4 +112,19 @@ public class Sneaker {
 		this.mDescription = description;
 	}
 
+	public int getThumbnailId() {
+		return this.mThumbnailId;
+	}
+
+	public void setThumbnailId(int thumbnailId) {
+		this.mThumbnailId = thumbnailId;
+	}
+
+	public SneakerCategory getCategory() {
+		return this.mCategory;
+	}
+
+	public void setCategory(String category) {
+		this.mCategory.setName(category);
+	}
 }
