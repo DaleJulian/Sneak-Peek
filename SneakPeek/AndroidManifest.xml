@@ -24,12 +24,13 @@
         </activity>
         <activity
             android:name=".SneakerEntryList"
-            android:label="@string/app_name"
-            />
+            android:label="@string/app_name" />
         <activity
             android:name=".SneakerDetailsActivity"
-            android:label="@string/app_name"
-            />
+            android:label="@string/app_name" />
+        <activity
+            android:name=".EditSneakerEntryActivity"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

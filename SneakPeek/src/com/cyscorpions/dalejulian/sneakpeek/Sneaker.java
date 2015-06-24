@@ -22,17 +22,17 @@ public class Sneaker {
 	private String mName;
 	private String mBrand;
 	// private String[] mColorway;
-	private SneakerRarity mRarity;
+	private String mRarity;
 	private String mSellingValue;
 	private String mDescription;
-	private SneakerCategory mCategory = null;
+	private SneakerCategory mCategory = new SneakerCategory();
 	private int mThumbnailId;
 
 	public Sneaker(JSONObject json) throws JSONException {
 		mId = UUID.fromString(json.getString(JSON_ID));
 		mName = json.getString(JSON_NAME);
 		mBrand = json.getString(JSON_BRAND);
-		mRarity = SneakerRarity.valueOf(json.getString(JSON_RARITY));
+		mRarity = json.getString(JSON_RARITY);
 		mSellingValue = json.getString(JSON_SELLINGVALUE);
 		mDescription = json.getString(JSON_DESCRIPTION);
 		mCategory.setName(json.getString(JSON_CATEGORY));
@@ -55,9 +55,14 @@ public class Sneaker {
 		mId = UUID.randomUUID();
 
 	}
+	
+	public Sneaker(){
+		mId = UUID.randomUUID();
+	}
 
-	public Sneaker(String name, String brand, SneakerRarity rarity,
-			String sellValue, String desc, SneakerCategory category, int imageResId) {
+	public Sneaker(String name, String brand, String rarity,
+			String sellValue, String desc, SneakerCategory category,
+			int imageResId) {
 		mName = name;
 		mBrand = brand;
 		mRarity = rarity;
@@ -72,6 +77,9 @@ public class Sneaker {
 		return this.mId;
 	}
 
+	public void setId(String id) {
+		mId = UUID.fromString(id);
+	}
 	public String getName() {
 		return this.mName;
 	}
@@ -88,11 +96,11 @@ public class Sneaker {
 		this.mBrand = brand;
 	}
 
-	public SneakerRarity getRarity() {
+	public String getRarity() {
 		return this.mRarity;
 	}
 
-	public void setRarity(SneakerRarity rarity) {
+	public void setRarity(String rarity) {
 		this.mRarity = rarity;
 	}
 
@@ -126,5 +134,20 @@ public class Sneaker {
 
 	public void setCategory(String category) {
 		this.mCategory.setName(category);
+	}
+
+	public String getTitleName() {
+		String s = this.mBrand + " " + this.mName;
+		return s;
+	}
+	
+	public void copyValuesFromSneaker(Sneaker sneaker) {
+		this.mName = sneaker.mName;
+		this.mBrand = sneaker.mBrand;
+		this.mRarity = sneaker.mRarity;
+		this.mSellingValue = sneaker.mSellingValue;
+		this.mCategory = sneaker.mCategory;
+		this.mDescription = sneaker.mDescription;
+		this.mThumbnailId = sneaker.mThumbnailId;
 	}
 }

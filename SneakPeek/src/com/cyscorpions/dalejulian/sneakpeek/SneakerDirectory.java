@@ -45,6 +45,11 @@ public class SneakerDirectory {
 		}
 		return null;
 	}
+	
+	public void deleteSneaker(Sneaker sneaker) {
+		mSneakers.remove(sneaker);
+		saveSneakers();
+	}
 
 	public void addSneaker(Sneaker sneaker) {
 		mSneakers.add(sneaker);

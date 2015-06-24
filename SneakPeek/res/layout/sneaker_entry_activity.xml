@@ -19,8 +19,7 @@
         android:layout_below="@id/imgSneakerEntry"
         android:layout_centerHorizontal="true"
         android:text="Air Jordan 6 Doernbecher"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/txtSneakerBrand"

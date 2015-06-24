@@ -47,16 +47,17 @@ public class SneakerAdapter extends ArrayAdapter<Sneaker> {
 			holder.sneakerIcon = (ImageView) row
 					.findViewById(R.id.imgSneakerThumbnail);
 			holder.sneakerName = (TextView) row.findViewById(R.id.txtShoeName);
-			holder.sneakerDescription = (TextView) row.findViewById(R.id.txtShoeDescription);
+			holder.sneakerDescription = (TextView) row
+					.findViewById(R.id.txtShoeDescription);
 			row.setTag(holder);
 		} else {
 			holder = (SneakerEntryHolder) row.getTag();
 		}
 
 		Sneaker sneaker = data.get(position);
-		String formattedName = sneaker.getBrand() + " " + sneaker.getName();
-		holder.sneakerName.setText(formattedName);
-		Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), sneaker.getThumbnailId());
+		holder.sneakerName.setText(sneaker.getTitleName());
+		Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(),
+				sneaker.getThumbnailId());
 		holder.sneakerIcon.setImageBitmap(bitmap);
 		holder.sneakerDescription.setText(sneaker.getDescription());
 

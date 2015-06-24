@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:id="@+id/imgSneakerEntry"
+            android:layout_width="400sp"
+            android:layout_height="400sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:src="@drawable/airjordan6db" />
+
+        <EditText
+            android:id="@+id/txtSneakerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgSneakerEntry"
+            android:layout_centerHorizontal="true"
+            android:hint="Shoe name"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtSneakerBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/txtSneakerName"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="34dp"
+            android:hint="Brand" />
+
+        <EditText
+            android:id="@+id/txtSneakerRarity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/txtSneakerBrand"
+            android:layout_marginLeft="24dp"
+            android:hint="Rarity" />
+
+        <EditText
+            android:id="@+id/txtSellingValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/txtSneakerRarity"
+            android:layout_marginLeft="24dp"
+            android:hint="Selling price" />
+
+        <EditText
+            android:id="@+id/txtSneakerCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSneakerName"
+            android:layout_centerHorizontal="true"
+            android:hint="Category"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/txtSneakerDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSellingValue"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="30dp"
+            android:hint="Shoe description" />
+
+        <Button
+            android:id="@+id/btnSaveData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSneakerDescription"
+            android:layout_centerHorizontal="true" 
+            android:text="@string/save_data"/>
+    </RelativeLayout>
+
+</ScrollView>
