@@ -50,6 +50,7 @@ public class SneakerDetailsActivity extends Activity {
 	}
 
 	private void setupContentByExtras() {
+		
 		mName.setText(getIntent().getStringExtra(
 				SneakerEntryList.LIST_TITLE_EXTRA));
 		mBrand.setText(getIntent().getStringExtra(
@@ -86,7 +87,6 @@ public class SneakerDetailsActivity extends Activity {
 
 		if (item.getTitle() == "Edit details") {
 			Intent i = new Intent(SneakerDetailsActivity.this, EditSneakerEntryActivity.class);
-			
 			i.putExtra(DETAILS_NAME_EXTRA, sneaker.getName());
 			i.putExtra(DETAILS_BRAND_EXTRA, sneaker.getBrand());
 			i.putExtra(DETAILS_SELLING_EXTRA, sneaker.getSellingValue());
@@ -97,7 +97,6 @@ public class SneakerDetailsActivity extends Activity {
 			i.putExtra(DETAILS_TITLE_EXTRA, sneaker.getTitleName());
 			i.putExtra(DETAILS_UUID_EXTRA, sneakerId);
 			i.putExtra(DETAILS_FROMDETAILS_EXTRA, true);
-			
 			startActivityForResult(i, 1);
 		}
 		return super.onOptionsItemSelected(item);

@@ -6,10 +6,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -29,6 +33,7 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 	public static final String LIST_TITLE_EXTRA = "title";
 	public static final String LIST_ID_EXTRA = "id";
 	public static final String LIST_CATEGORY_EDIT_EXTRA = "editextra";
+	public static final String LIST_FROMLIST_EXTRA = "fromlist";
 
 	private SneakerCategory mCategory = new SneakerCategory();
 
@@ -48,7 +53,7 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 		mEntryList = (ListView) findViewById(R.id.listSneakerEntries);
 		mEntryList.setAdapter(mAdapter);
 		mEntryList.setOnItemClickListener(this);
-		
+
 		registerForContextMenu(mEntryList);
 	}
 
@@ -85,7 +90,6 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 			i.putExtra(LIST_CATEGORY_EDIT_EXTRA, this.mCategory.getName()
 					.toString());
 			startActivityForResult(i, 1);
-
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -104,4 +108,40 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 		mAdapter.notifyDataSetChanged();
 	}
 
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo){
+		super.onCreateContextMenu(menu, v, menuInfo);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.sneaker_list_context_menu, menu);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item){
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
+		int position = info.position;
+		Sneaker sneaker = mAdapter.getItem(position);
+		
+		switch(item.getItemId()) {
+		case R.id.menu_list_edit_sneaker:
+			Intent i = new Intent(SneakerEntryList.this,
+					EditSneakerEntryActivity.class);
+			i.putExtra(LIST_NAME_EXTRA, sneaker.getName());
+			i.putExtra(LIST_BRAND_EXTRA, sneaker.getBrand());
+			i.putExtra(LIST_SELLING_EXTRA, sneaker.getSellingValue());
+			i.putExtra(LIST_RARITY_EXTRA, sneaker.getRarity());
+			i.putExtra(LIST_CATEGORY_EXTRA, sneaker.getCategory().getName().toString());
+			i.putExtra(LIST_DESC_EXTRA, sneaker.getDescription());
+			i.putExtra(LIST_IMGID_EXTRA, sneaker.getThumbnailId());
+			i.putExtra(LIST_TITLE_EXTRA, sneaker.getTitleName());
+			i.putExtra(LIST_ID_EXTRA, sneaker.getId().toString());
+			i.putExtra(LIST_FROMLIST_EXTRA, true);
+			startActivityForResult(i, 1);
+			break;
+		case R.id.menu_list_delete_sneaker:
+			SneakerDirectory.get(getApplicationContext()).deleteSneaker(sneaker);
+			updateList();
+			return true;
+		}
+		return super.onContextItemSelected(item);
+	}
 }
