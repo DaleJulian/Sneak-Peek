@@ -11,5 +11,12 @@
 	<dimen name="sneaker_brand_marginTop">34dp</dimen>
 	<dimen name="sneaker_desc_sideMargin">15dp</dimen>
 	<dimen name="sneaker_desc_marginTop">30dp</dimen>
+	<dimen name="sneaker_list_marginTop">22dp</dimen>
+	<dimen name="sneaker_thumbnail_h_w">150sp</dimen>
+	<dimen name="sneaker_txtShoeName">15dp</dimen>
+	<dimen name="sneaker_txt_marginLeft">10dp</dimen>
+	<dimen name="sneaker_txtDesc_txtsz">11sp</dimen>
+	<dimen name="sneaker_shoeName">15sp</dimen>
+	<dimen name="sneaker_marginTop">22dp</dimen>
 	
 </resources>

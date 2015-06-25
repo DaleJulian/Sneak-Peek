@@ -19,7 +19,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentLeft="true"
 	    android:layout_alignParentTop="true"
-	    android:layout_marginTop="22dp"
+	    android:layout_marginTop="@dimen/sneaker_list_marginTop"
 	    android:padding="@dimen/list_item_padding"
 	    android:text="@string/category_desc"
 	    android:textSize="@dimen/description_text_size" />
