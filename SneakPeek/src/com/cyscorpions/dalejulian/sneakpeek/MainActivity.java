@@ -48,7 +48,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			if (id == R.id.action_settings) {
 				CategoryDirectory.get(getApplicationContext()).addCategory(
 						new SneakerCategory("Fancy", "Margiela.."));
-				// ((SneakerCategoryAdapter)getListAdapter()).notifyDataSetChanged();
 				mAdapter.notifyDataSetChanged();
 				return true;
 			}

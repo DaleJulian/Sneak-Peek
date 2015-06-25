@@ -7,5 +7,11 @@
     <string name="category_name">Category Name</string>
     <string name="category_desc">This sneaker is for something..</string>
     <string name="save_data">Save Entry</string>
-
+	<string name="shoe_name_hint">Shoe name</string>
+	<string name="shoe_brand_hint">Brand</string>
+	<string name="shoe_rarity_hint">Rarity</string>
+	<string name="selling_price_hint">Selling Price</string>
+	<string name="shoe_categ_hint">Category</string>
+	<string name="shoe_desc_hint">Description</string>
+	
 </resources>
