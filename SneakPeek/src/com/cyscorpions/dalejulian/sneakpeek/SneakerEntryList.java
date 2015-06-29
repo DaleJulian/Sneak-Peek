@@ -1,6 +1,9 @@
 package com.cyscorpions.dalejulian.sneakpeek;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -48,6 +51,13 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 
 		mSneakers = SneakerDirectory.get(getApplicationContext())
 				.getSneakersByCategory(mCategory.getName());
+
+		Collections.sort(mSneakers, new Comparator<Sneaker>() {
+			public int compare(Sneaker obj1, Sneaker obj2) {
+				return obj1.getTitleName().compareToIgnoreCase(
+						obj2.getTitleName());
+			}
+		});
 		mAdapter = new SneakerAdapter(this, R.layout.sneaker_entry_listitem,
 				mSneakers);
 		mEntryList = (ListView) findViewById(R.id.listSneakerEntries);
@@ -109,19 +119,21 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 	}
 
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo){
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.sneaker_list_context_menu, menu);
 	}
-	
+
 	@Override
-	public boolean onContextItemSelected(MenuItem item){
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+				.getMenuInfo();
 		int position = info.position;
 		Sneaker sneaker = mAdapter.getItem(position);
-		
-		switch(item.getItemId()) {
+
+		switch (item.getItemId()) {
 		case R.id.menu_list_edit_sneaker:
 			Intent i = new Intent(SneakerEntryList.this,
 					EditSneakerEntryActivity.class);
@@ -129,7 +141,8 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 			i.putExtra(LIST_BRAND_EXTRA, sneaker.getBrand());
 			i.putExtra(LIST_SELLING_EXTRA, sneaker.getSellingValue());
 			i.putExtra(LIST_RARITY_EXTRA, sneaker.getRarity());
-			i.putExtra(LIST_CATEGORY_EXTRA, sneaker.getCategory().getName().toString());
+			i.putExtra(LIST_CATEGORY_EXTRA, sneaker.getCategory().getName()
+					.toString());
 			i.putExtra(LIST_DESC_EXTRA, sneaker.getDescription());
 			i.putExtra(LIST_IMGID_EXTRA, sneaker.getThumbnailId());
 			i.putExtra(LIST_TITLE_EXTRA, sneaker.getTitleName());
@@ -138,7 +151,8 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 			startActivityForResult(i, 1);
 			break;
 		case R.id.menu_list_delete_sneaker:
-			SneakerDirectory.get(getApplicationContext()).deleteSneaker(sneaker);
+			SneakerDirectory.get(getApplicationContext())
+					.deleteSneaker(sneaker);
 			updateList();
 			return true;
 		}

@@ -1,6 +1,7 @@
 package com.cyscorpions.dalejulian.sneakpeek;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
