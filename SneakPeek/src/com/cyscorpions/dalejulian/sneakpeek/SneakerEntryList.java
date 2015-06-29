@@ -52,12 +52,7 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 		mSneakers = SneakerDirectory.get(getApplicationContext())
 				.getSneakersByCategory(mCategory.getName());
 
-		Collections.sort(mSneakers, new Comparator<Sneaker>() {
-			public int compare(Sneaker obj1, Sneaker obj2) {
-				return obj1.getTitleName().compareToIgnoreCase(
-						obj2.getTitleName());
-			}
-		});
+		sortEntriesAlphabetically(mSneakers);
 		mAdapter = new SneakerAdapter(this, R.layout.sneaker_entry_listitem,
 				mSneakers);
 		mEntryList = (ListView) findViewById(R.id.listSneakerEntries);
@@ -110,11 +105,11 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 	}
 
 	private void updateList() {
-		ArrayList<Sneaker> s = SneakerDirectory.get(getApplicationContext())
+		ArrayList<Sneaker> sneakers = SneakerDirectory.get(getApplicationContext())
 				.getSneakersByCategory(mCategory.getName());
-
+		sortEntriesAlphabetically(sneakers);
 		mAdapter.clear();
-		mAdapter.addAll(s);
+		mAdapter.addAll(sneakers);
 		mAdapter.notifyDataSetChanged();
 	}
 
@@ -157,5 +152,14 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 			return true;
 		}
 		return super.onContextItemSelected(item);
+	}
+
+	private void sortEntriesAlphabetically(List<Sneaker> sneakerList) {
+		Collections.sort(sneakerList, new Comparator<Sneaker>() {
+			public int compare(Sneaker obj1, Sneaker obj2) {
+				return obj1.getTitleName().compareToIgnoreCase(
+						obj2.getTitleName());
+			}
+		});
 	}
 }
