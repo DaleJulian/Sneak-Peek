@@ -1,6 +1,13 @@
-package com.cyscorpions.dalejulian.sneakpeek;
+package com.cyscorpions.dalejulian.sneakpeek.activities;
 
 import java.util.ArrayList;
+
+import com.cyscorpions.dalejulian.sneakpeek.R;
+import com.cyscorpions.dalejulian.sneakpeek.R.id;
+import com.cyscorpions.dalejulian.sneakpeek.R.layout;
+import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
+import com.cyscorpions.dalejulian.sneakpeek.models.SneakerCategory;
+import com.cyscorpions.dalejulian.sneakpeek.models.SneakerDirectory;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -73,7 +80,7 @@ public class EditSneakerEntryActivity extends Activity {
 		boolean isFromDetailActivity = getIntent().getBooleanExtra(
 				SneakerDetailsActivity.DETAILS_FROMDETAILS_EXTRA, false);
 		boolean isFromListActivity = getIntent().getBooleanExtra(
-				SneakerEntryList.LIST_FROMLIST_EXTRA, false);
+				SneakerEntryListActivity.LIST_FROMLIST_EXTRA, false);
 
 		if (isFromDetailActivity) {
 			mSneaker.setBrand(getIntent().getStringExtra(
@@ -94,23 +101,23 @@ public class EditSneakerEntryActivity extends Activity {
 					SneakerDetailsActivity.DETAILS_UUID_EXTRA);
 		} else if (isFromListActivity) {
 			mSneaker.setBrand(getIntent().getStringExtra(
-					SneakerEntryList.LIST_BRAND_EXTRA));
+					SneakerEntryListActivity.LIST_BRAND_EXTRA));
 			mSneaker.setName(getIntent().getStringExtra(
-					SneakerEntryList.LIST_NAME_EXTRA));
+					SneakerEntryListActivity.LIST_NAME_EXTRA));
 			mSneaker.setRarity(getIntent().getStringExtra(
-					SneakerEntryList.LIST_RARITY_EXTRA));
+					SneakerEntryListActivity.LIST_RARITY_EXTRA));
 			mSneaker.setSellingValue(getIntent().getStringExtra(
-					SneakerEntryList.LIST_SELLING_EXTRA));
+					SneakerEntryListActivity.LIST_SELLING_EXTRA));
 			mSneaker.setThumbnailId(getIntent().getIntExtra(
-					SneakerEntryList.LIST_IMGID_EXTRA, 0));
+					SneakerEntryListActivity.LIST_IMGID_EXTRA, 0));
 			mSneaker.setDescription(getIntent().getStringExtra(
-					SneakerEntryList.LIST_DESC_EXTRA));
+					SneakerEntryListActivity.LIST_DESC_EXTRA));
 			mSneaker.setCategory(getIntent().getStringExtra(
-					SneakerEntryList.LIST_CATEGORY_EXTRA));
-			id = getIntent().getStringExtra(SneakerEntryList.LIST_ID_EXTRA);
+					SneakerEntryListActivity.LIST_CATEGORY_EXTRA));
+			id = getIntent().getStringExtra(SneakerEntryListActivity.LIST_ID_EXTRA);
 		} else {
 			mCategory.setText(getIntent().getStringExtra(
-					SneakerEntryList.LIST_CATEGORY_EDIT_EXTRA));
+					SneakerEntryListActivity.LIST_CATEGORY_EDIT_EXTRA));
 			mSaveButton.setOnClickListener(new View.OnClickListener() {
 
 				@Override

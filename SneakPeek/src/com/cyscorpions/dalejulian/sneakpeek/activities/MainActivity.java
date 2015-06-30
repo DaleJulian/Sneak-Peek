@@ -1,6 +1,14 @@
-package com.cyscorpions.dalejulian.sneakpeek;
+package com.cyscorpions.dalejulian.sneakpeek.activities;
 
 import java.util.ArrayList;
+
+import com.cyscorpions.dalejulian.sneakpeek.R;
+import com.cyscorpions.dalejulian.sneakpeek.R.id;
+import com.cyscorpions.dalejulian.sneakpeek.R.layout;
+import com.cyscorpions.dalejulian.sneakpeek.R.menu;
+import com.cyscorpions.dalejulian.sneakpeek.adapters.SneakerCategoryAdapter;
+import com.cyscorpions.dalejulian.sneakpeek.models.CategoryDirectory;
+import com.cyscorpions.dalejulian.sneakpeek.models.SneakerCategory;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -58,7 +66,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Intent i = new Intent(MainActivity.this, SneakerEntryList.class);
+		Intent i = new Intent(MainActivity.this, SneakerEntryListActivity.class);
 		i.putExtra(CATEGORY_EXTRA, mCategories.get(position).getName());
 		startActivity(i);
 

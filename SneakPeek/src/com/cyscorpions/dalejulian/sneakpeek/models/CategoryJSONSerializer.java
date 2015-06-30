@@ -1,4 +1,4 @@
-package com.cyscorpions.dalejulian.sneakpeek;
+package com.cyscorpions.dalejulian.sneakpeek.models;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

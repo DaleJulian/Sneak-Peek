@@ -1,6 +1,10 @@
-package com.cyscorpions.dalejulian.sneakpeek;
+package com.cyscorpions.dalejulian.sneakpeek.adapters;
 
 import java.util.ArrayList;
+
+import com.cyscorpions.dalejulian.sneakpeek.R;
+import com.cyscorpions.dalejulian.sneakpeek.R.id;
+import com.cyscorpions.dalejulian.sneakpeek.models.SneakerCategory;
 
 import android.app.Activity;
 import android.content.Context;

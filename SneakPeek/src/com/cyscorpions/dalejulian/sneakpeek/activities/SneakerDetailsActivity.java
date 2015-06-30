@@ -1,4 +1,9 @@
-package com.cyscorpions.dalejulian.sneakpeek;
+package com.cyscorpions.dalejulian.sneakpeek.activities;
+
+import com.cyscorpions.dalejulian.sneakpeek.R;
+import com.cyscorpions.dalejulian.sneakpeek.R.id;
+import com.cyscorpions.dalejulian.sneakpeek.R.layout;
+import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -35,7 +40,7 @@ public class SneakerDetailsActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sneaker_entry_activity);
-		sneakerId = getIntent().getStringExtra(SneakerEntryList.LIST_ID_EXTRA);
+		sneakerId = getIntent().getStringExtra(SneakerEntryListActivity.LIST_ID_EXTRA);
 		Log.i("Sneaker Entry", sneakerId);
 		findResources();
 		setupContentByExtras();
@@ -55,28 +60,28 @@ public class SneakerDetailsActivity extends Activity {
 	private void setupContentByExtras() {
 
 		mName.setText(getIntent().getStringExtra(
-				SneakerEntryList.LIST_TITLE_EXTRA));
+				SneakerEntryListActivity.LIST_TITLE_EXTRA));
 		mBrand.setText(getIntent().getStringExtra(
-				SneakerEntryList.LIST_BRAND_EXTRA));
+				SneakerEntryListActivity.LIST_BRAND_EXTRA));
 		mSellValue.setText(getIntent().getStringExtra(
-				SneakerEntryList.LIST_SELLING_EXTRA));
+				SneakerEntryListActivity.LIST_SELLING_EXTRA));
 		mRarity.setText(getIntent().getStringExtra(
-				SneakerEntryList.LIST_RARITY_EXTRA));
+				SneakerEntryListActivity.LIST_RARITY_EXTRA));
 		mCategory.setText(getIntent().getStringExtra(
-				SneakerEntryList.LIST_CATEGORY_EXTRA));
+				SneakerEntryListActivity.LIST_CATEGORY_EXTRA));
 		mDesc.setText(getIntent().getStringExtra(
-				SneakerEntryList.LIST_DESC_EXTRA));
+				SneakerEntryListActivity.LIST_DESC_EXTRA));
 
 		@SuppressWarnings("deprecation")
 		Drawable imageDrawable = getResources().getDrawable(
-				getIntent().getIntExtra(SneakerEntryList.LIST_IMGID_EXTRA, 0));
+				getIntent().getIntExtra(SneakerEntryListActivity.LIST_IMGID_EXTRA, 0));
 		mThumbnail.setImageDrawable(imageDrawable);
 		sneaker.setName(mName.getText().toString());
 		sneaker.setBrand(mBrand.getText().toString());
 		sneaker.setSellingValue(mSellValue.getText().toString());
 		sneaker.setDescription(mDesc.getText().toString());
 		sneaker.setThumbnailId(getIntent().getIntExtra(
-				SneakerEntryList.LIST_IMGID_EXTRA, 0));
+				SneakerEntryListActivity.LIST_IMGID_EXTRA, 0));
 		sneaker.setRarity(mRarity.getText().toString());
 		sneaker.setCategory(mCategory.getText().toString());
 	}
