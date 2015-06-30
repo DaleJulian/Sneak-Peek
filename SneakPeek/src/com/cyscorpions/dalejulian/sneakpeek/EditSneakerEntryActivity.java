@@ -151,14 +151,14 @@ public class EditSneakerEntryActivity extends Activity {
 						SneakerDirectory.get(getApplicationContext())
 								.saveSneakers();
 						Intent i = new Intent();
-						i.putExtra(EDIT_NAME_EXTRA, ss.getName());
-						i.putExtra(EDIT_BRAND_EXTRA, ss.getBrand());
-						i.putExtra(EDIT_SELLVAL_EXTRA, ss.getSellingValue());
-						i.putExtra(EDIT_RARITY_EXTRA, ss.getRarity());
+						i.putExtra(EDIT_NAME_EXTRA, ss.getName().toString());
+						i.putExtra(EDIT_BRAND_EXTRA, ss.getBrand().toString());
+						i.putExtra(EDIT_SELLVAL_EXTRA, ss.getSellingValue().toString());
+						i.putExtra(EDIT_RARITY_EXTRA, ss.getRarity().toString());
 						i.putExtra(EDIT_CATEGORY_EXTRA, ss.getCategory()
 								.getName().toString());
-						i.putExtra(EDIT_DESC_EXTRA, ss.getDescription());
-						setResult(RESULT_OK, i);
+						i.putExtra(EDIT_DESC_EXTRA, ss.getDescription().toString());
+						setResult(RESULT_CANCELED);
 						finish();
 						break;
 					}

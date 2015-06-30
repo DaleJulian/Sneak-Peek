@@ -85,7 +85,6 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add("Add Sneak Peek Entry");
-		menu.add("Take Picture");
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -98,10 +97,6 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 					.toString());
 			startActivityForResult(i, 1);
 		}
-		if(item.getTitle() == "Take Picture") {
-			Intent i = new Intent(SneakerEntryList.this, SneakerCameraActivity.class);
-			startActivity(i);
-		}
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -111,8 +106,9 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 	}
 
 	private void updateList() {
-		ArrayList<Sneaker> sneakers = SneakerDirectory.get(getApplicationContext())
-				.getSneakersByCategory(mCategory.getName());
+		ArrayList<Sneaker> sneakers = SneakerDirectory.get(
+				getApplicationContext()).getSneakersByCategory(
+				mCategory.getName());
 		sortEntriesAlphabetically(sneakers);
 		mAdapter.clear();
 		mAdapter.addAll(sneakers);
