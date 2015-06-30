@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SneakerDetailsActivity extends Activity {
+	public static final int RECEIVE_EDITED_DETAILS_REQUEST = 1;
 
 	public static final String DETAILS_NAME_EXTRA = "name";
 	public static final String DETAILS_BRAND_EXTRA = "brand";
@@ -76,7 +77,7 @@ public class SneakerDetailsActivity extends Activity {
 			Drawable imageDrawable = getResources().getDrawable(imgResourceId);
 			mThumbnail.setImageDrawable(imageDrawable);
 		}
-		
+
 		sneaker.setName(mName.getText().toString());
 		sneaker.setBrand(mBrand.getText().toString());
 		sneaker.setSellingValue(mSellValue.getText().toString());
@@ -109,7 +110,7 @@ public class SneakerDetailsActivity extends Activity {
 			i.putExtra(DETAILS_TITLE_EXTRA, sneaker.getTitleName());
 			i.putExtra(DETAILS_UUID_EXTRA, sneakerId);
 			i.putExtra(DETAILS_FROMDETAILS_EXTRA, true);
-			startActivityForResult(i, 1);
+			startActivityForResult(i, RECEIVE_EDITED_DETAILS_REQUEST);
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -123,7 +124,7 @@ public class SneakerDetailsActivity extends Activity {
 
 	@Override
 	public void onActivityResult(int resultCode, int requestCode, Intent data) {
-		if (data != null) {
+		if (requestCode == RECEIVE_EDITED_DETAILS_REQUEST) {
 			mName.setText(data
 					.getStringExtra(EditSneakerEntryActivity.EDIT_NAME_EXTRA));
 			mBrand.setText(data

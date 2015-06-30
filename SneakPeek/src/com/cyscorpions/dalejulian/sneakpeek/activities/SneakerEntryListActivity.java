@@ -25,7 +25,9 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class SneakerEntryListActivity extends Activity implements OnItemClickListener {
+public class SneakerEntryListActivity extends Activity implements
+		OnItemClickListener {
+	public static final int RECEIVE_NEW_ENTRY_REQUEST = 1;
 
 	private ListView mEntryList;
 	private ArrayList<Sneaker> mSneakers;
@@ -83,7 +85,7 @@ public class SneakerEntryListActivity extends Activity implements OnItemClickLis
 		i.putExtra(LIST_IMGID_EXTRA, selectedSneaker.getThumbnailId());
 		i.putExtra(LIST_TITLE_EXTRA, selectedSneaker.getTitleName());
 		i.putExtra(LIST_ID_EXTRA, selectedSneaker.getId().toString());
-		startActivityForResult(i, 1);
+		startActivityForResult(i, RECEIVE_NEW_ENTRY_REQUEST);
 
 	}
 
@@ -107,8 +109,10 @@ public class SneakerEntryListActivity extends Activity implements OnItemClickLis
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		sortEntriesAlphabetically(mSneakers);
-		updateList();
+		if (requestCode == RECEIVE_NEW_ENTRY_REQUEST) {
+			sortEntriesAlphabetically(mSneakers);
+			updateList();
+		}
 	}
 
 	private void updateList() {
