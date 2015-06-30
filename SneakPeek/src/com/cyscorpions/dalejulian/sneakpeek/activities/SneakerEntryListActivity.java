@@ -1,9 +1,18 @@
-package com.cyscorpions.dalejulian.sneakpeek;
+package com.cyscorpions.dalejulian.sneakpeek.activities;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import com.cyscorpions.dalejulian.sneakpeek.R;
+import com.cyscorpions.dalejulian.sneakpeek.R.id;
+import com.cyscorpions.dalejulian.sneakpeek.R.layout;
+import com.cyscorpions.dalejulian.sneakpeek.R.menu;
+import com.cyscorpions.dalejulian.sneakpeek.adapters.SneakerAdapter;
+import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
+import com.cyscorpions.dalejulian.sneakpeek.models.SneakerCategory;
+import com.cyscorpions.dalejulian.sneakpeek.models.SneakerDirectory;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,7 +29,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class SneakerEntryList extends Activity implements OnItemClickListener {
+public class SneakerEntryListActivity extends Activity implements OnItemClickListener {
 
 	private ListView mEntryList;
 	private ArrayList<Sneaker> mSneakers;
@@ -67,7 +76,7 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		Sneaker selectedSneaker = mSneakers.get(position);
-		Intent i = new Intent(SneakerEntryList.this,
+		Intent i = new Intent(SneakerEntryListActivity.this,
 				SneakerDetailsActivity.class);
 		i.putExtra(LIST_NAME_EXTRA, selectedSneaker.getName());
 		i.putExtra(LIST_BRAND_EXTRA, selectedSneaker.getBrand());
@@ -91,7 +100,7 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getTitle() == "Add Sneak Peek Entry") {
-			Intent i = new Intent(SneakerEntryList.this,
+			Intent i = new Intent(SneakerEntryListActivity.this,
 					EditSneakerEntryActivity.class);
 			i.putExtra(LIST_CATEGORY_EDIT_EXTRA, this.mCategory.getName()
 					.toString());
@@ -132,7 +141,7 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 
 		switch (item.getItemId()) {
 		case R.id.menu_list_edit_sneaker:
-			Intent i = new Intent(SneakerEntryList.this,
+			Intent i = new Intent(SneakerEntryListActivity.this,
 					EditSneakerEntryActivity.class);
 			i.putExtra(LIST_NAME_EXTRA, sneaker.getName());
 			i.putExtra(LIST_BRAND_EXTRA, sneaker.getBrand());

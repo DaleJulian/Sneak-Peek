@@ -1,4 +1,4 @@
-package com.cyscorpions.dalejulian.sneakpeek;
+package com.cyscorpions.dalejulian.sneakpeek.models;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONTokener;
+
+import com.cyscorpions.dalejulian.sneakpeek.R;
+import com.cyscorpions.dalejulian.sneakpeek.R.drawable;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.cyscorpions.dalejulian.sneakpeek;
+package com.cyscorpions.dalejulian.sneakpeek.models;
 
 import java.util.ArrayList;
 import java.util.UUID;

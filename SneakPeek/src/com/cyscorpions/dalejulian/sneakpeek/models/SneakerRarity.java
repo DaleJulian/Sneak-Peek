@@ -1,4 +1,4 @@
-package com.cyscorpions.dalejulian.sneakpeek;
+package com.cyscorpions.dalejulian.sneakpeek.models;
 
 public enum SneakerRarity {
 	GeneralRelease, //A shoe manufactured in huge quantities
