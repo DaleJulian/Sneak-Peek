@@ -16,7 +16,6 @@ import android.widget.TextView;
 public class SneakerCategoryAdapter extends ArrayAdapter<SneakerCategory> {
 	private Context mContext;
 	private int layoutResourceId;
-	// SneakerCategory[] data = null;
 	private ArrayList<SneakerCategory> data;
 
 	// view holder
@@ -47,9 +46,10 @@ public class SneakerCategoryAdapter extends ArrayAdapter<SneakerCategory> {
 			holder.categoryDesc = (TextView) row
 					.findViewById(R.id.txtCategoryDesc);
 
-			row.setTag(holder);
+			//row.setTag(holder);
+			row.setTag(R.id.TAG_CATEGORY, holder);
 		} else {
-			holder = (CategoryHolder) row.getTag();
+			holder = (CategoryHolder) row.getTag(R.id.TAG_CATEGORY);
 		}
 
 		SneakerCategory category = data.get(position);

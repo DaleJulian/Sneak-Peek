@@ -50,9 +50,9 @@ public class SneakerAdapter extends ArrayAdapter<Sneaker> {
 			holder.sneakerName = (TextView) row.findViewById(R.id.txtShoeName);
 			holder.sneakerDescription = (TextView) row
 					.findViewById(R.id.txtShoeDescription);
-			row.setTag(holder);
+			row.setTag(R.id.TAG_SNEAKER, holder);
 		} else {
-			holder = (SneakerEntryHolder) row.getTag();
+			holder = (SneakerEntryHolder) row.getTag(R.id.TAG_SNEAKER);
 		}
 
 		Sneaker sneaker = data.get(position);

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="TAG_CATEGORY" type="id" value="integer"/>
+    <item name="TAG_SNEAKER" type="id" value="string"/>
+
+</resources>
