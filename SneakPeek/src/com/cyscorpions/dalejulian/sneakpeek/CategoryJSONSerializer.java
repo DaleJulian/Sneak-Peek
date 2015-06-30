@@ -48,7 +48,8 @@ public class CategoryJSONSerializer {
 			}
 			JSONArray jsonArray = (JSONArray) new JSONTokener(
 					jsonString.toString()).nextValue();
-			for (int i = 0; i < jsonArray.length(); i++) {
+			int jsonArrayLength = jsonArray.length();
+			for (int i = 0; i < jsonArrayLength; i++) {
 				categories.add(new SneakerCategory(jsonArray.getJSONObject(i)));
 			}
 		} catch (FileNotFoundException e) {
