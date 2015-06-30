@@ -60,6 +60,7 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 		mEntryList.setOnItemClickListener(this);
 
 		registerForContextMenu(mEntryList);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
@@ -84,6 +85,7 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add("Add Sneak Peek Entry");
+		menu.add("Take Picture");
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -95,6 +97,10 @@ public class SneakerEntryList extends Activity implements OnItemClickListener {
 			i.putExtra(LIST_CATEGORY_EDIT_EXTRA, this.mCategory.getName()
 					.toString());
 			startActivityForResult(i, 1);
+		}
+		if(item.getTitle() == "Take Picture") {
+			Intent i = new Intent(SneakerEntryList.this, SneakerCameraActivity.class);
+			startActivity(i);
 		}
 		return super.onOptionsItemSelected(item);
 	}

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,9 +58,10 @@ public class SneakerAdapter extends ArrayAdapter<Sneaker> {
 
 		Sneaker sneaker = data.get(position);
 		holder.sneakerName.setText(sneaker.getTitleName());
-		Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(),
+		@SuppressWarnings("deprecation")
+		Drawable imgDrawable = mContext.getResources().getDrawable(
 				sneaker.getThumbnailId());
-		holder.sneakerIcon.setImageBitmap(bitmap);
+		holder.sneakerIcon.setImageDrawable(imgDrawable);
 		holder.sneakerDescription.setText(sneaker.getDescription());
 
 		return row;

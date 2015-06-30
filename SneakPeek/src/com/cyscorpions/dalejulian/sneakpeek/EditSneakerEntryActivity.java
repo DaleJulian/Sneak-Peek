@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +38,7 @@ public class EditSneakerEntryActivity extends Activity {
 
 		findResourceIds();
 		setupEditView();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	public interface DataChangedListener {
@@ -122,9 +124,9 @@ public class EditSneakerEntryActivity extends Activity {
 		mName.setText(mSneaker.getName());
 		mBrand.setText(mSneaker.getBrand());
 		mSellVal.setText(mSneaker.getSellingValue());
-		Bitmap bm = BitmapFactory.decodeResource(getResources(),
-				mSneaker.getThumbnailId());
-		mThumbnail.setImageBitmap(bm);
+		@SuppressWarnings("deprecation")
+		Drawable imgDrawable = getResources().getDrawable(mSneaker.getThumbnailId());
+		mThumbnail.setImageDrawable(imgDrawable);
 		mRarity.setText(mSneaker.getRarity());
 		mDesc.setText(mSneaker.getDescription());
 		mCategory.setText(mSneaker.getCategory().getName().toString());
