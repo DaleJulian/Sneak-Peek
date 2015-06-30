@@ -85,8 +85,8 @@ public class SneakerEntryListActivity extends Activity implements
 		i.putExtra(LIST_IMGID_EXTRA, selectedSneaker.getThumbnailId());
 		i.putExtra(LIST_TITLE_EXTRA, selectedSneaker.getTitleName());
 		i.putExtra(LIST_ID_EXTRA, selectedSneaker.getId().toString());
-		startActivityForResult(i, RECEIVE_NEW_ENTRY_REQUEST);
-
+		// startActivityForResult(i, RECEIVE_NEW_ENTRY_REQUEST);
+		startActivity(i);
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class SneakerEntryListActivity extends Activity implements
 					EditSneakerEntryActivity.class);
 			i.putExtra(LIST_CATEGORY_EDIT_EXTRA, this.mCategory.getName()
 					.toString());
-			startActivityForResult(i, 1);
+			startActivityForResult(i, RECEIVE_NEW_ENTRY_REQUEST);
 		}
 		return super.onOptionsItemSelected(item);
 	}
