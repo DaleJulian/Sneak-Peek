@@ -36,7 +36,8 @@ public class SneakerDetailsActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sneaker_entry_activity);
-		sneakerId = getIntent().getStringExtra(SneakerEntryListActivity.LIST_ID_EXTRA);
+		sneakerId = getIntent().getStringExtra(
+				SneakerEntryListActivity.LIST_ID_EXTRA);
 		Log.i("Sneaker Entry", sneakerId);
 		findResources();
 		setupContentByExtras();
@@ -68,10 +69,14 @@ public class SneakerDetailsActivity extends Activity {
 		mDesc.setText(getIntent().getStringExtra(
 				SneakerEntryListActivity.LIST_DESC_EXTRA));
 
-		@SuppressWarnings("deprecation")
-		Drawable imageDrawable = getResources().getDrawable(
-				getIntent().getIntExtra(SneakerEntryListActivity.LIST_IMGID_EXTRA, 0));
-		mThumbnail.setImageDrawable(imageDrawable);
+		int imgResourceId = getIntent().getIntExtra(
+				SneakerEntryListActivity.LIST_IMGID_EXTRA, 0);
+		if (imgResourceId != 0) {
+			@SuppressWarnings("deprecation")
+			Drawable imageDrawable = getResources().getDrawable(imgResourceId);
+			mThumbnail.setImageDrawable(imageDrawable);
+		}
+		
 		sneaker.setName(mName.getText().toString());
 		sneaker.setBrand(mBrand.getText().toString());
 		sneaker.setSellingValue(mSellValue.getText().toString());
@@ -118,17 +123,21 @@ public class SneakerDetailsActivity extends Activity {
 
 	@Override
 	public void onActivityResult(int resultCode, int requestCode, Intent data) {
-		mName.setText(data
-				.getStringExtra(EditSneakerEntryActivity.EDIT_NAME_EXTRA));
-		mBrand.setText(data
-				.getStringExtra(EditSneakerEntryActivity.EDIT_BRAND_EXTRA));
-		mSellValue.setText(data
-				.getStringExtra(EditSneakerEntryActivity.EDIT_SELLVAL_EXTRA));
-		mRarity.setText(data
-				.getStringExtra(EditSneakerEntryActivity.EDIT_RARITY_EXTRA));
-		mCategory.setText(data
-				.getStringExtra(EditSneakerEntryActivity.EDIT_CATEGORY_EXTRA));
-		mDesc.setText(data
-				.getStringExtra(EditSneakerEntryActivity.EDIT_DESC_EXTRA));
+		if (data != null) {
+			mName.setText(data
+					.getStringExtra(EditSneakerEntryActivity.EDIT_NAME_EXTRA));
+			mBrand.setText(data
+					.getStringExtra(EditSneakerEntryActivity.EDIT_BRAND_EXTRA));
+			mSellValue
+					.setText(data
+							.getStringExtra(EditSneakerEntryActivity.EDIT_SELLVAL_EXTRA));
+			mRarity.setText(data
+					.getStringExtra(EditSneakerEntryActivity.EDIT_RARITY_EXTRA));
+			mCategory
+					.setText(data
+							.getStringExtra(EditSneakerEntryActivity.EDIT_CATEGORY_EXTRA));
+			mDesc.setText(data
+					.getStringExtra(EditSneakerEntryActivity.EDIT_DESC_EXTRA));
+		}
 	}
 }

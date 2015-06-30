@@ -107,6 +107,7 @@ public class SneakerEntryListActivity extends Activity implements OnItemClickLis
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		sortEntriesAlphabetically(mSneakers);
 		updateList();
 	}
 

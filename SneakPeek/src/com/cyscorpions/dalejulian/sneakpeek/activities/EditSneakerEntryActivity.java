@@ -68,9 +68,6 @@ public class EditSneakerEntryActivity extends Activity {
 				.getText().toString(), mDesc.getText().toString(), category, 0);
 
 		SneakerDirectory.get(this).addSneaker(sneaker);
-		Intent intent = new Intent();
-		setResult(RESULT_OK, intent);
-		finish();
 	}
 
 	private void setupEditView() {
@@ -126,12 +123,16 @@ public class EditSneakerEntryActivity extends Activity {
 								.show();
 					} else {
 						saveSneaker();
+						Intent intent = new Intent();
+						setResult(RESULT_OK, intent);
+						finish();
 					}
 				}
 			});
 			return;
 		}
 
+		
 		mName.setText(mSneaker.getName());
 		mBrand.setText(mSneaker.getBrand());
 		mSellVal.setText(mSneaker.getSellingValue());
@@ -171,12 +172,11 @@ public class EditSneakerEntryActivity extends Activity {
 								.getName().toString());
 						i.putExtra(EDIT_DESC_EXTRA, ss.getDescription()
 								.toString());
-						setResult(RESULT_CANCELED);
+						setResult(RESULT_OK, i);
 						finish();
 						break;
 					}
 				}
-				Log.i("Edit Activity", "Done searching");
 			}
 		});
 	}

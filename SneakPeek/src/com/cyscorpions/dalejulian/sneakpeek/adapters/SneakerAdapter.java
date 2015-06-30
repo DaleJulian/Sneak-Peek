@@ -1,6 +1,7 @@
 package com.cyscorpions.dalejulian.sneakpeek.adapters;
 
 import java.util.ArrayList;
+
 import com.cyscorpions.dalejulian.sneakpeek.R;
 import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
 
