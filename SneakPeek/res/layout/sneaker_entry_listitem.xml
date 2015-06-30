@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/txtShoeName"
         android:layout_alignTop="@id/txtShoeName"
+        android:layout_below="@id/txtShoeName"
         android:layout_marginTop="@dimen/sneaker_marginTop"
         android:text="@string/shoe_desc_text"
         android:textSize="@dimen/sneaker_txtDesc_txtsz" />
