@@ -1,17 +1,11 @@
 package com.cyscorpions.dalejulian.sneakpeek.adapters;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import com.cyscorpions.dalejulian.sneakpeek.R;
-import com.cyscorpions.dalejulian.sneakpeek.R.id;
 import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;

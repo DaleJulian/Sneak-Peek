@@ -6,9 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.cyscorpions.dalejulian.sneakpeek.R;
-import com.cyscorpions.dalejulian.sneakpeek.R.id;
-import com.cyscorpions.dalejulian.sneakpeek.R.layout;
-import com.cyscorpions.dalejulian.sneakpeek.R.menu;
 import com.cyscorpions.dalejulian.sneakpeek.adapters.SneakerAdapter;
 import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
 import com.cyscorpions.dalejulian.sneakpeek.models.SneakerCategory;
@@ -17,7 +14,6 @@ import com.cyscorpions.dalejulian.sneakpeek.models.SneakerDirectory;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;

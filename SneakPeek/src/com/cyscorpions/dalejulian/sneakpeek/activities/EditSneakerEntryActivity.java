@@ -3,16 +3,12 @@ package com.cyscorpions.dalejulian.sneakpeek.activities;
 import java.util.ArrayList;
 
 import com.cyscorpions.dalejulian.sneakpeek.R;
-import com.cyscorpions.dalejulian.sneakpeek.R.id;
-import com.cyscorpions.dalejulian.sneakpeek.R.layout;
 import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
 import com.cyscorpions.dalejulian.sneakpeek.models.SneakerCategory;
 import com.cyscorpions.dalejulian.sneakpeek.models.SneakerDirectory;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;

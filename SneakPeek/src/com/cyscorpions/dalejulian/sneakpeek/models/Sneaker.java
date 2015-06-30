@@ -15,7 +15,6 @@ public class Sneaker {
 	private static final String JSON_SELLINGVALUE = "sellingvalue";
 	private static final String JSON_DESCRIPTION = "description";
 	private static final String JSON_CATEGORY = null;
-	private static final String JSON_IMAGE = "image";
 
 	private UUID mId;
 	// private SneakerPhoto mPhoto;
@@ -55,14 +54,13 @@ public class Sneaker {
 		mId = UUID.randomUUID();
 
 	}
-	
-	public Sneaker(){
+
+	public Sneaker() {
 		mId = UUID.randomUUID();
 	}
 
-	public Sneaker(String name, String brand, String rarity,
-			String sellValue, String desc, SneakerCategory category,
-			int imageResId) {
+	public Sneaker(String name, String brand, String rarity, String sellValue,
+			String desc, SneakerCategory category, int imageResId) {
 		mName = name;
 		mBrand = brand;
 		mRarity = rarity;
@@ -80,6 +78,7 @@ public class Sneaker {
 	public void setId(String id) {
 		mId = UUID.fromString(id);
 	}
+
 	public String getName() {
 		return this.mName;
 	}
@@ -140,7 +139,7 @@ public class Sneaker {
 		String s = this.mBrand + " " + this.mName;
 		return s;
 	}
-	
+
 	public void copyValuesFromSneaker(Sneaker sneaker) {
 		this.mName = sneaker.mName;
 		this.mBrand = sneaker.mBrand;

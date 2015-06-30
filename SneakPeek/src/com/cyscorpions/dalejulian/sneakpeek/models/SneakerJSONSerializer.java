@@ -15,7 +15,6 @@ import org.json.JSONException;
 import org.json.JSONTokener;
 
 import com.cyscorpions.dalejulian.sneakpeek.R;
-import com.cyscorpions.dalejulian.sneakpeek.R.drawable;
 
 import android.content.Context;
 
@@ -55,14 +54,14 @@ public class SneakerJSONSerializer {
 				CategoryDirectory.get(mContext).getCategory("Running"),
 				R.drawable.nikeairmax90beachesofrio));
 
-		sneakers.add(new Sneaker("Diamond Dunk Lows", "Nike SB",
-				"Hyperstrike", "$45,000",
+		sneakers.add(new Sneaker("Diamond Dunk Lows", "Nike SB", "Hyperstrike",
+				"$45,000",
 				"One of the most sought after dunks released in 2005.",
 				CategoryDirectory.get(mContext).getCategory("Skateboarding"),
 				R.drawable.nikesbdunklowtiffany));
 
-		sneakers.add(new Sneaker("Paris", "Nike SB", "Hyperstrike",
-				"$2,000", "The most wanted pair among the 'City Pack' Series",
+		sneakers.add(new Sneaker("Paris", "Nike SB", "Hyperstrike", "$2,000",
+				"The most wanted pair among the 'City Pack' Series",
 				CategoryDirectory.get(mContext).getCategory("Skateboarding"),
 				R.drawable.nikesbparis));
 

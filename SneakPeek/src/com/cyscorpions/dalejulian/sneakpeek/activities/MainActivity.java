@@ -3,9 +3,6 @@ package com.cyscorpions.dalejulian.sneakpeek.activities;
 import java.util.ArrayList;
 
 import com.cyscorpions.dalejulian.sneakpeek.R;
-import com.cyscorpions.dalejulian.sneakpeek.R.id;
-import com.cyscorpions.dalejulian.sneakpeek.R.layout;
-import com.cyscorpions.dalejulian.sneakpeek.R.menu;
 import com.cyscorpions.dalejulian.sneakpeek.adapters.SneakerCategoryAdapter;
 import com.cyscorpions.dalejulian.sneakpeek.models.CategoryDirectory;
 import com.cyscorpions.dalejulian.sneakpeek.models.SneakerCategory;
