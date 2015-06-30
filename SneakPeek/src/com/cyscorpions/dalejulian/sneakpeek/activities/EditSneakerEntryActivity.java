@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class EditSneakerEntryActivity extends Activity {
 
@@ -110,7 +111,8 @@ public class EditSneakerEntryActivity extends Activity {
 					SneakerEntryListActivity.LIST_DESC_EXTRA));
 			mSneaker.setCategory(getIntent().getStringExtra(
 					SneakerEntryListActivity.LIST_CATEGORY_EXTRA));
-			id = getIntent().getStringExtra(SneakerEntryListActivity.LIST_ID_EXTRA);
+			id = getIntent().getStringExtra(
+					SneakerEntryListActivity.LIST_ID_EXTRA);
 		} else {
 			mCategory.setText(getIntent().getStringExtra(
 					SneakerEntryListActivity.LIST_CATEGORY_EDIT_EXTRA));
@@ -118,7 +120,13 @@ public class EditSneakerEntryActivity extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					saveSneaker();
+					if (mName.getText().toString().matches("")) {
+						Toast.makeText(getApplicationContext(),
+								"Sneaker name is required.", Toast.LENGTH_SHORT)
+								.show();
+					} else {
+						saveSneaker();
+					}
 				}
 			});
 			return;
@@ -128,7 +136,8 @@ public class EditSneakerEntryActivity extends Activity {
 		mBrand.setText(mSneaker.getBrand());
 		mSellVal.setText(mSneaker.getSellingValue());
 		@SuppressWarnings("deprecation")
-		Drawable imgDrawable = getResources().getDrawable(mSneaker.getThumbnailId());
+		Drawable imgDrawable = getResources().getDrawable(
+				mSneaker.getThumbnailId());
 		mThumbnail.setImageDrawable(imgDrawable);
 		mRarity.setText(mSneaker.getRarity());
 		mDesc.setText(mSneaker.getDescription());
@@ -142,7 +151,6 @@ public class EditSneakerEntryActivity extends Activity {
 				ArrayList<Sneaker> s = SneakerDirectory.get(
 						getApplicationContext()).getAllSneakers();
 				for (Sneaker ss : s) {
-
 					if (id.equals(ss.getId().toString())) {
 						Log.i("Edit Activity", "Sneaker found");
 						ss.setName(mName.getText().toString());
@@ -156,11 +164,13 @@ public class EditSneakerEntryActivity extends Activity {
 						Intent i = new Intent();
 						i.putExtra(EDIT_NAME_EXTRA, ss.getName().toString());
 						i.putExtra(EDIT_BRAND_EXTRA, ss.getBrand().toString());
-						i.putExtra(EDIT_SELLVAL_EXTRA, ss.getSellingValue().toString());
+						i.putExtra(EDIT_SELLVAL_EXTRA, ss.getSellingValue()
+								.toString());
 						i.putExtra(EDIT_RARITY_EXTRA, ss.getRarity().toString());
 						i.putExtra(EDIT_CATEGORY_EXTRA, ss.getCategory()
 								.getName().toString());
-						i.putExtra(EDIT_DESC_EXTRA, ss.getDescription().toString());
+						i.putExtra(EDIT_DESC_EXTRA, ss.getDescription()
+								.toString());
 						setResult(RESULT_CANCELED);
 						finish();
 						break;

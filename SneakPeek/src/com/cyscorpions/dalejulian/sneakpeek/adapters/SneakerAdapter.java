@@ -56,10 +56,13 @@ public class SneakerAdapter extends ArrayAdapter<Sneaker> {
 
 		Sneaker sneaker = data.get(position);
 		holder.sneakerName.setText(sneaker.getTitleName());
-		@SuppressWarnings("deprecation")
-		Drawable imgDrawable = mContext.getResources().getDrawable(
-				sneaker.getThumbnailId());
-		holder.sneakerIcon.setImageDrawable(imgDrawable);
+		if (sneaker.getThumbnailId() != 0) {
+			@SuppressWarnings("deprecation")
+			Drawable imgDrawable = mContext.getResources().getDrawable(
+					sneaker.getThumbnailId());
+			holder.sneakerIcon.setImageDrawable(imgDrawable);
+		}
+		
 		holder.sneakerDescription.setText(sneaker.getDescription());
 
 		return row;

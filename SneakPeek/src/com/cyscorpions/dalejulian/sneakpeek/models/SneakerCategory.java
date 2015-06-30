@@ -16,9 +16,6 @@ public class SneakerCategory {
 	private String mName;
 	private String mDescription;
 
-	// not yet implemented(low prio)
-	// private SneakPeekPhoto mIcon;
-
 	public SneakerCategory(String name, String desc) {
 		mName = name;
 		mDescription = desc;
