@@ -64,9 +64,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtSellingValue"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
         android:text="A shoe designed by a kid with a chronic illness. All sales of this product goes to the Doernbecher Hospital." />
 
 </RelativeLayout>
