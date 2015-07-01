@@ -46,7 +46,7 @@ public class SneakerCategoryAdapter extends ArrayAdapter<SneakerCategory> {
 			holder.categoryDesc = (TextView) row
 					.findViewById(R.id.txtCategoryDesc);
 
-			//row.setTag(holder);
+			// row.setTag(holder);
 			row.setTag(R.id.TAG_CATEGORY, holder);
 		} else {
 			holder = (CategoryHolder) row.getTag(R.id.TAG_CATEGORY);
@@ -56,6 +56,7 @@ public class SneakerCategoryAdapter extends ArrayAdapter<SneakerCategory> {
 		holder.categoryName.setText(category.getName());
 		holder.categoryDesc.setText(category.getDescription());
 
+		row.setTag(R.id.TAG_CATEGORY_OBJECT, category);
 		return row;
 	}
 }

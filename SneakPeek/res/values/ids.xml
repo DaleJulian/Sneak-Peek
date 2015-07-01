@@ -4,5 +4,6 @@
     <item name="TAG_CATEGORY" type="id" value="integer"/>
     <item name="TAG_SNEAKER" type="id" value="string"/>
     <item name="TAG_SNEAKER_OBJECT" type="id" value="object"/>
+    <item name="TAG_CATEGORY_OBJECT" type="id" value="object"/>
 
 </resources>

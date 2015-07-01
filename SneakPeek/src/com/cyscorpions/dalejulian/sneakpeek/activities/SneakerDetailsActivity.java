@@ -2,6 +2,7 @@ package com.cyscorpions.dalejulian.sneakpeek.activities;
 
 import com.cyscorpions.dalejulian.sneakpeek.R;
 import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
+import com.cyscorpions.dalejulian.sneakpeek.models.SneakerDirectory;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SneakerDetailsActivity extends Activity {
-	public static final int RECEIVE_EDITED_DETAILS_REQUEST = 1;
+	public static final int RECEIVE_EDITED_DETAILS_REQUEST = 5;
 
 	public static final String DETAILS_NAME_EXTRA = "name";
 	public static final String DETAILS_BRAND_EXTRA = "brand";
@@ -39,7 +40,6 @@ public class SneakerDetailsActivity extends Activity {
 		setContentView(R.layout.sneaker_entry_activity);
 		sneakerId = getIntent().getStringExtra(
 				SneakerEntryListActivity.LIST_ID_EXTRA);
-		Log.i("Sneaker Entry", sneakerId);
 		findResources();
 		setupContentByExtras();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -89,12 +89,14 @@ public class SneakerDetailsActivity extends Activity {
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+	public boolean onCreateOptionsMenu(Menu menu) {
 
-			return true;
-		}
+		menu.add("Edit details");
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
 
 		if (item.getTitle() == "Edit details") {
 			Intent i = new Intent(SneakerDetailsActivity.this,
@@ -121,36 +123,27 @@ public class SneakerDetailsActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		menu.add("Edit details");
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	@Override
 	public void onActivityResult(int resultCode, int requestCode, Intent data) {
+		Log.i("SneakerDetails", "HOHO" + String.valueOf(requestCode));
 
-		switch (requestCode) {
-		case RECEIVE_EDITED_DETAILS_REQUEST:
-			if (resultCode == RESULT_OK) {
-				mName.setText(data
-						.getStringExtra(EditSneakerEntryActivity.EDIT_NAME_EXTRA));
-				mBrand.setText(data
-						.getStringExtra(EditSneakerEntryActivity.EDIT_BRAND_EXTRA));
-				mSellValue
-						.setText(data
-								.getStringExtra(EditSneakerEntryActivity.EDIT_SELLVAL_EXTRA));
-				mRarity.setText(data
-						.getStringExtra(EditSneakerEntryActivity.EDIT_RARITY_EXTRA));
-				mCategory
-						.setText(data
-								.getStringExtra(EditSneakerEntryActivity.EDIT_CATEGORY_EXTRA));
-				mDesc.setText(data
-						.getStringExtra(EditSneakerEntryActivity.EDIT_DESC_EXTRA));
-			} else if (resultCode == RESULT_CANCELED) {
-				//
-			}
-			break;
+		if (data == null)
+			Log.i("null data", "null data");
+		if (requestCode == RECEIVE_EDITED_DETAILS_REQUEST) {
+			mName.setText(data
+					.getStringExtra(EditSneakerEntryActivity.EDIT_NAME_EXTRA));
+			mBrand.setText(data
+					.getStringExtra(EditSneakerEntryActivity.EDIT_BRAND_EXTRA));
+			mSellValue
+					.setText(data
+							.getStringExtra(EditSneakerEntryActivity.EDIT_SELLVAL_EXTRA));
+			mRarity.setText(data
+					.getStringExtra(EditSneakerEntryActivity.EDIT_RARITY_EXTRA));
+			mCategory
+					.setText(data
+							.getStringExtra(EditSneakerEntryActivity.EDIT_CATEGORY_EXTRA));
+			mDesc.setText(data
+					.getStringExtra(EditSneakerEntryActivity.EDIT_DESC_EXTRA));
 		}
+
 	}
 }

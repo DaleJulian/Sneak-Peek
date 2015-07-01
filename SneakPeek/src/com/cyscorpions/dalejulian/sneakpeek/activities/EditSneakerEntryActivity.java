@@ -52,6 +52,7 @@ public class EditSneakerEntryActivity extends Activity {
 		findResourceIds();
 		setupEditView();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		Log.i("Edit Activity", getCallingActivity().getClassName());
 	}
 
 	public interface DataChangedListener {
@@ -97,30 +98,33 @@ public class EditSneakerEntryActivity extends Activity {
 		id = getIntent().getStringExtra(KEYEXTRA_ID);
 
 		if (isFromDetailActivity || isFromListActivity) {
-			mName.setText(mSneaker.getName());
-			mBrand.setText(mSneaker.getBrand());
-			mSellVal.setText(mSneaker.getSellingValue());
+
 			@SuppressWarnings("deprecation")
 			Drawable imgDrawable = getResources().getDrawable(
 					mSneaker.getThumbnailId());
 			mThumbnail.setImageDrawable(imgDrawable);
-			mRarity.setText(mSneaker.getRarity());
-			mDesc.setText(mSneaker.getDescription());
-			mCategory.setText(mSneaker.getCategory().getName().toString());
 		}
+		mName.setText(mSneaker.getName());
+		mBrand.setText(mSneaker.getBrand());
+		mSellVal.setText(mSneaker.getSellingValue());
+		mRarity.setText(mSneaker.getRarity());
+		mDesc.setText(mSneaker.getDescription());
+		mCategory.setText(mSneaker.getCategory().getName().toString());
 
 		mSaveButton = (Button) findViewById(R.id.btnSaveData);
-
 		mSaveButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if (isFromDetailActivity || isFromListActivity) {
+					if (isFromDetailActivity)
+						Log.i("ISFROMDETAIL", "FROM DETAIL");
+					else if (isFromListActivity)
+						Log.i("ISFROMLIST", "FROM LIST");
 					ArrayList<Sneaker> s = SneakerDirectory.get(
 							getApplicationContext()).getAllSneakers();
 					for (Sneaker ss : s) {
 						if (id.equals(ss.getId().toString())) {
-							Log.i("Edit Activity", "Sneaker found");
 							ss.setName(mName.getText().toString());
 							ss.setBrand(mBrand.getText().toString());
 							ss.setSellingValue(mSellVal.getText().toString());
@@ -142,7 +146,6 @@ public class EditSneakerEntryActivity extends Activity {
 							i.putExtra(EDIT_DESC_EXTRA, ss.getDescription()
 									.toString());
 							setResult(RESULT_OK, i);
-							finish();
 							break;
 						}
 					}
@@ -156,6 +159,7 @@ public class EditSneakerEntryActivity extends Activity {
 						Intent intent = new Intent();
 						setResult(RESULT_OK, intent);
 						finish();
+
 					}
 				}
 			}

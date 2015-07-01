@@ -5,6 +5,8 @@ import java.util.UUID;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.cyscorpions.dalejulian.sneakpeek.R;
+
 public class Sneaker {
 
 	// JSON TAGS
@@ -17,10 +19,8 @@ public class Sneaker {
 	private static final String JSON_CATEGORY = null;
 
 	private UUID mId;
-	// private SneakerPhoto mPhoto;
 	private String mName;
 	private String mBrand;
-	// private String[] mColorway;
 	private String mRarity;
 	private String mSellingValue;
 	private String mDescription;
@@ -68,7 +68,7 @@ public class Sneaker {
 		mDescription = desc;
 		mId = UUID.randomUUID();
 		mCategory = category;
-		mThumbnailId = imageResId;
+		mThumbnailId = imageResId != 0 ? imageResId : R.drawable.defaultimage;
 	}
 
 	public UUID getId() {
