@@ -99,16 +99,21 @@ public class SneakerDetailsActivity extends Activity {
 		if (item.getTitle() == "Edit details") {
 			Intent i = new Intent(SneakerDetailsActivity.this,
 					EditSneakerEntryActivity.class);
-			i.putExtra(DETAILS_NAME_EXTRA, sneaker.getName());
-			i.putExtra(DETAILS_BRAND_EXTRA, sneaker.getBrand());
-			i.putExtra(DETAILS_SELLING_EXTRA, sneaker.getSellingValue());
-			i.putExtra(DETAILS_RARITY_EXTRA, sneaker.getRarity());
-			i.putExtra(DETAILS_CATEGORY_EXTRA, sneaker.getCategory().getName()
-					.toString());
-			i.putExtra(DETAILS_DESC_EXTRA, sneaker.getDescription());
-			i.putExtra(DETAILS_IMGID_EXTRA, sneaker.getThumbnailId());
-			i.putExtra(DETAILS_TITLE_EXTRA, sneaker.getTitleName());
-			i.putExtra(DETAILS_UUID_EXTRA, sneakerId);
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_NAME,
+					sneaker.getName());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_BRAND,
+					sneaker.getBrand());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_SELLVAL,
+					sneaker.getSellingValue());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_RARITY,
+					sneaker.getRarity());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_CATEGORY, sneaker
+					.getCategory().getName().toString());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_DESCRIPTION,
+					sneaker.getDescription());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_THUMBNAILID,
+					sneaker.getThumbnailId());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_ID, sneakerId);
 			i.putExtra(DETAILS_FROMDETAILS_EXTRA, true);
 			startActivityForResult(i, RECEIVE_EDITED_DETAILS_REQUEST);
 		}
@@ -124,21 +129,28 @@ public class SneakerDetailsActivity extends Activity {
 
 	@Override
 	public void onActivityResult(int resultCode, int requestCode, Intent data) {
-		if (requestCode == RECEIVE_EDITED_DETAILS_REQUEST) {
-			mName.setText(data
-					.getStringExtra(EditSneakerEntryActivity.EDIT_NAME_EXTRA));
-			mBrand.setText(data
-					.getStringExtra(EditSneakerEntryActivity.EDIT_BRAND_EXTRA));
-			mSellValue
-					.setText(data
-							.getStringExtra(EditSneakerEntryActivity.EDIT_SELLVAL_EXTRA));
-			mRarity.setText(data
-					.getStringExtra(EditSneakerEntryActivity.EDIT_RARITY_EXTRA));
-			mCategory
-					.setText(data
-							.getStringExtra(EditSneakerEntryActivity.EDIT_CATEGORY_EXTRA));
-			mDesc.setText(data
-					.getStringExtra(EditSneakerEntryActivity.EDIT_DESC_EXTRA));
+
+		switch (requestCode) {
+		case RECEIVE_EDITED_DETAILS_REQUEST:
+			if (resultCode == RESULT_OK) {
+				mName.setText(data
+						.getStringExtra(EditSneakerEntryActivity.EDIT_NAME_EXTRA));
+				mBrand.setText(data
+						.getStringExtra(EditSneakerEntryActivity.EDIT_BRAND_EXTRA));
+				mSellValue
+						.setText(data
+								.getStringExtra(EditSneakerEntryActivity.EDIT_SELLVAL_EXTRA));
+				mRarity.setText(data
+						.getStringExtra(EditSneakerEntryActivity.EDIT_RARITY_EXTRA));
+				mCategory
+						.setText(data
+								.getStringExtra(EditSneakerEntryActivity.EDIT_CATEGORY_EXTRA));
+				mDesc.setText(data
+						.getStringExtra(EditSneakerEntryActivity.EDIT_DESC_EXTRA));
+			} else if (resultCode == RESULT_CANCELED) {
+				//
+			}
+			break;
 		}
 	}
 }

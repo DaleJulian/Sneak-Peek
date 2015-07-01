@@ -33,6 +33,15 @@ public class EditSneakerEntryActivity extends Activity {
 	public static final String EDIT_DESC_EXTRA = "desc";
 	public static final String EDIT_RARITY_EXTRA = "rare";
 
+	public static final String KEYEXTRA_NAME = "edit_name";
+	public static final String KEYEXTRA_BRAND = "edit_brand";
+	public static final String KEYEXTRA_RARITY = "edit_rarity";
+	public static final String KEYEXTRA_SELLVAL = "edit_selval";
+	public static final String KEYEXTRA_THUMBNAILID = "edit_thmbnlid";
+	public static final String KEYEXTRA_CATEGORY = "edit_categ";
+	public static final String KEYEXTRA_DESCRIPTION = "edit_desc";
+	public static final String KEYEXTRA_ID = "edit_id";
+
 	private String id;
 
 	@Override
@@ -71,52 +80,73 @@ public class EditSneakerEntryActivity extends Activity {
 	}
 
 	private void setupEditView() {
-		boolean isFromDetailActivity = getIntent().getBooleanExtra(
+		final boolean isFromDetailActivity = getIntent().getBooleanExtra(
 				SneakerDetailsActivity.DETAILS_FROMDETAILS_EXTRA, false);
-		boolean isFromListActivity = getIntent().getBooleanExtra(
+		final boolean isFromListActivity = getIntent().getBooleanExtra(
 				SneakerEntryListActivity.LIST_FROMLIST_EXTRA, false);
 
-		if (isFromDetailActivity) {
-			mSneaker.setBrand(getIntent().getStringExtra(
-					SneakerDetailsActivity.DETAILS_BRAND_EXTRA));
-			mSneaker.setName(getIntent().getStringExtra(
-					SneakerDetailsActivity.DETAILS_NAME_EXTRA));
-			mSneaker.setRarity(getIntent().getStringExtra(
-					SneakerDetailsActivity.DETAILS_RARITY_EXTRA));
-			mSneaker.setSellingValue(getIntent().getStringExtra(
-					SneakerDetailsActivity.DETAILS_SELLING_EXTRA));
-			mSneaker.setThumbnailId(getIntent().getIntExtra(
-					SneakerDetailsActivity.DETAILS_IMGID_EXTRA, 0));
-			mSneaker.setDescription(getIntent().getStringExtra(
-					SneakerDetailsActivity.DETAILS_DESC_EXTRA));
-			mSneaker.setCategory(getIntent().getStringExtra(
-					SneakerDetailsActivity.DETAILS_CATEGORY_EXTRA));
-			id = getIntent().getStringExtra(
-					SneakerDetailsActivity.DETAILS_UUID_EXTRA);
-		} else if (isFromListActivity) {
-			mSneaker.setBrand(getIntent().getStringExtra(
-					SneakerEntryListActivity.LIST_BRAND_EXTRA));
-			mSneaker.setName(getIntent().getStringExtra(
-					SneakerEntryListActivity.LIST_NAME_EXTRA));
-			mSneaker.setRarity(getIntent().getStringExtra(
-					SneakerEntryListActivity.LIST_RARITY_EXTRA));
-			mSneaker.setSellingValue(getIntent().getStringExtra(
-					SneakerEntryListActivity.LIST_SELLING_EXTRA));
-			mSneaker.setThumbnailId(getIntent().getIntExtra(
-					SneakerEntryListActivity.LIST_IMGID_EXTRA, 0));
-			mSneaker.setDescription(getIntent().getStringExtra(
-					SneakerEntryListActivity.LIST_DESC_EXTRA));
-			mSneaker.setCategory(getIntent().getStringExtra(
-					SneakerEntryListActivity.LIST_CATEGORY_EXTRA));
-			id = getIntent().getStringExtra(
-					SneakerEntryListActivity.LIST_ID_EXTRA);
-		} else {
-			mCategory.setText(getIntent().getStringExtra(
-					SneakerEntryListActivity.LIST_CATEGORY_EDIT_EXTRA));
-			mSaveButton.setOnClickListener(new View.OnClickListener() {
+		mSneaker.setBrand(getIntent().getStringExtra(KEYEXTRA_BRAND));
+		mSneaker.setName(getIntent().getStringExtra(KEYEXTRA_NAME));
+		mSneaker.setRarity(getIntent().getStringExtra(KEYEXTRA_RARITY));
+		mSneaker.setSellingValue(getIntent().getStringExtra(KEYEXTRA_SELLVAL));
+		mSneaker.setThumbnailId(getIntent()
+				.getIntExtra(KEYEXTRA_THUMBNAILID, 0));
+		mSneaker.setCategory(getIntent().getStringExtra(KEYEXTRA_CATEGORY));
+		mSneaker.setDescription(getIntent()
+				.getStringExtra(KEYEXTRA_DESCRIPTION));
+		id = getIntent().getStringExtra(KEYEXTRA_ID);
 
-				@Override
-				public void onClick(View v) {
+		if (isFromDetailActivity || isFromListActivity) {
+			mName.setText(mSneaker.getName());
+			mBrand.setText(mSneaker.getBrand());
+			mSellVal.setText(mSneaker.getSellingValue());
+			@SuppressWarnings("deprecation")
+			Drawable imgDrawable = getResources().getDrawable(
+					mSneaker.getThumbnailId());
+			mThumbnail.setImageDrawable(imgDrawable);
+			mRarity.setText(mSneaker.getRarity());
+			mDesc.setText(mSneaker.getDescription());
+			mCategory.setText(mSneaker.getCategory().getName().toString());
+		}
+
+		mSaveButton = (Button) findViewById(R.id.btnSaveData);
+
+		mSaveButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (isFromDetailActivity || isFromListActivity) {
+					ArrayList<Sneaker> s = SneakerDirectory.get(
+							getApplicationContext()).getAllSneakers();
+					for (Sneaker ss : s) {
+						if (id.equals(ss.getId().toString())) {
+							Log.i("Edit Activity", "Sneaker found");
+							ss.setName(mName.getText().toString());
+							ss.setBrand(mBrand.getText().toString());
+							ss.setSellingValue(mSellVal.getText().toString());
+							ss.setRarity(mRarity.getText().toString());
+							ss.setDescription(mDesc.getText().toString());
+							ss.setCategory(mCategory.getText().toString());
+							SneakerDirectory.get(getApplicationContext())
+									.saveSneakers();
+							Intent i = new Intent();
+							i.putExtra(EDIT_NAME_EXTRA, ss.getName().toString());
+							i.putExtra(EDIT_BRAND_EXTRA, ss.getBrand()
+									.toString());
+							i.putExtra(EDIT_SELLVAL_EXTRA, ss.getSellingValue()
+									.toString());
+							i.putExtra(EDIT_RARITY_EXTRA, ss.getRarity()
+									.toString());
+							i.putExtra(EDIT_CATEGORY_EXTRA, ss.getCategory()
+									.getName().toString());
+							i.putExtra(EDIT_DESC_EXTRA, ss.getDescription()
+									.toString());
+							setResult(RESULT_OK, i);
+							finish();
+							break;
+						}
+					}
+				} else {
 					if (mName.getText().toString().matches("")) {
 						Toast.makeText(getApplicationContext(),
 								"Sneaker name is required.", Toast.LENGTH_SHORT)
@@ -126,55 +156,6 @@ public class EditSneakerEntryActivity extends Activity {
 						Intent intent = new Intent();
 						setResult(RESULT_OK, intent);
 						finish();
-					}
-				}
-			});
-			return;
-		}
-
-		
-		mName.setText(mSneaker.getName());
-		mBrand.setText(mSneaker.getBrand());
-		mSellVal.setText(mSneaker.getSellingValue());
-		@SuppressWarnings("deprecation")
-		Drawable imgDrawable = getResources().getDrawable(
-				mSneaker.getThumbnailId());
-		mThumbnail.setImageDrawable(imgDrawable);
-		mRarity.setText(mSneaker.getRarity());
-		mDesc.setText(mSneaker.getDescription());
-		mCategory.setText(mSneaker.getCategory().getName().toString());
-
-		mSaveButton = (Button) findViewById(R.id.btnSaveData);
-		mSaveButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				ArrayList<Sneaker> s = SneakerDirectory.get(
-						getApplicationContext()).getAllSneakers();
-				for (Sneaker ss : s) {
-					if (id.equals(ss.getId().toString())) {
-						Log.i("Edit Activity", "Sneaker found");
-						ss.setName(mName.getText().toString());
-						ss.setBrand(mBrand.getText().toString());
-						ss.setSellingValue(mSellVal.getText().toString());
-						ss.setRarity(mRarity.getText().toString());
-						ss.setDescription(mDesc.getText().toString());
-						ss.setCategory(mCategory.getText().toString());
-						SneakerDirectory.get(getApplicationContext())
-								.saveSneakers();
-						Intent i = new Intent();
-						i.putExtra(EDIT_NAME_EXTRA, ss.getName().toString());
-						i.putExtra(EDIT_BRAND_EXTRA, ss.getBrand().toString());
-						i.putExtra(EDIT_SELLVAL_EXTRA, ss.getSellingValue()
-								.toString());
-						i.putExtra(EDIT_RARITY_EXTRA, ss.getRarity().toString());
-						i.putExtra(EDIT_CATEGORY_EXTRA, ss.getCategory()
-								.getName().toString());
-						i.putExtra(EDIT_DESC_EXTRA, ss.getDescription()
-								.toString());
-						setResult(RESULT_OK, i);
-						finish();
-						break;
 					}
 				}
 			}

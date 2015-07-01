@@ -14,6 +14,7 @@ import com.cyscorpions.dalejulian.sneakpeek.models.SneakerDirectory;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -73,7 +74,8 @@ public class SneakerEntryListActivity extends Activity implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Sneaker selectedSneaker = mSneakers.get(position);
+		//Sneaker selectedSneaker = mSneakers.get(position);
+		Sneaker selectedSneaker = (Sneaker) view.getTag(R.id.TAG_SNEAKER_OBJECT);
 		Intent i = new Intent(SneakerEntryListActivity.this,
 				SneakerDetailsActivity.class);
 		i.putExtra(LIST_NAME_EXTRA, selectedSneaker.getName());
@@ -85,7 +87,6 @@ public class SneakerEntryListActivity extends Activity implements
 		i.putExtra(LIST_IMGID_EXTRA, selectedSneaker.getThumbnailId());
 		i.putExtra(LIST_TITLE_EXTRA, selectedSneaker.getTitleName());
 		i.putExtra(LIST_ID_EXTRA, selectedSneaker.getId().toString());
-		// startActivityForResult(i, RECEIVE_NEW_ENTRY_REQUEST);
 		startActivity(i);
 	}
 
@@ -112,6 +113,9 @@ public class SneakerEntryListActivity extends Activity implements
 		if (requestCode == RECEIVE_NEW_ENTRY_REQUEST) {
 			sortEntriesAlphabetically(mSneakers);
 			updateList();
+			for(Sneaker s : SneakerDirectory.get(getApplicationContext()).getAllSneakers()) {
+				Log.i("SneakerEntryList", s.getName());
+			}
 		}
 	}
 
@@ -144,16 +148,15 @@ public class SneakerEntryListActivity extends Activity implements
 		case R.id.menu_list_edit_sneaker:
 			Intent i = new Intent(SneakerEntryListActivity.this,
 					EditSneakerEntryActivity.class);
-			i.putExtra(LIST_NAME_EXTRA, sneaker.getName());
-			i.putExtra(LIST_BRAND_EXTRA, sneaker.getBrand());
-			i.putExtra(LIST_SELLING_EXTRA, sneaker.getSellingValue());
-			i.putExtra(LIST_RARITY_EXTRA, sneaker.getRarity());
-			i.putExtra(LIST_CATEGORY_EXTRA, sneaker.getCategory().getName()
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_NAME, sneaker.getName());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_BRAND, sneaker.getBrand());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_SELLVAL, sneaker.getSellingValue());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_RARITY, sneaker.getRarity());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_CATEGORY, sneaker.getCategory().getName()
 					.toString());
-			i.putExtra(LIST_DESC_EXTRA, sneaker.getDescription());
-			i.putExtra(LIST_IMGID_EXTRA, sneaker.getThumbnailId());
-			i.putExtra(LIST_TITLE_EXTRA, sneaker.getTitleName());
-			i.putExtra(LIST_ID_EXTRA, sneaker.getId().toString());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_DESCRIPTION, sneaker.getDescription());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_THUMBNAILID, sneaker.getThumbnailId());
+			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_ID, sneaker.getId().toString());
 			i.putExtra(LIST_FROMLIST_EXTRA, true);
 			startActivityForResult(i, 1);
 			break;

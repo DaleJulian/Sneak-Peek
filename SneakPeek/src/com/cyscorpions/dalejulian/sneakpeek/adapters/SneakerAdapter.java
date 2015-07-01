@@ -65,7 +65,7 @@ public class SneakerAdapter extends ArrayAdapter<Sneaker> {
 		}
 		
 		holder.sneakerDescription.setText(sneaker.getDescription());
-
+		row.setTag(R.id.TAG_SNEAKER_OBJECT, sneaker);
 		return row;
 	}
 }
