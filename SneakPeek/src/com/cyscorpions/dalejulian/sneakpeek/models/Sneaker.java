@@ -141,7 +141,8 @@ public class Sneaker implements Serializable {
 	}
 
 	public String getTitleName() {
-		String s = this.mBrand + " " + this.mName;
+		String s = mBrand.matches("") ? "Unknown brand " + this.mName : this.mBrand
+				+ " " + this.mName;
 		return s;
 	}
 

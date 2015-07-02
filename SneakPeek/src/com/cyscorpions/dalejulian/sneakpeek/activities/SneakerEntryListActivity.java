@@ -148,7 +148,8 @@ public class SneakerEntryListActivity extends Activity implements
 	private void sortEntriesAlphabetically(List<Sneaker> sneakerList) {
 		Collections.sort(sneakerList, new Comparator<Sneaker>() {
 			public int compare(Sneaker obj1, Sneaker obj2) {
-				return obj1.getName().compareToIgnoreCase(obj2.getName());
+				return obj1.getTitleName().compareToIgnoreCase(
+						obj2.getTitleName());
 			}
 		});
 	}
