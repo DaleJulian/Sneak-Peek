@@ -1,6 +1,7 @@
 package com.cyscorpions.dalejulian.sneakpeek.activities;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import com.cyscorpions.dalejulian.sneakpeek.R;
 import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
@@ -26,21 +27,10 @@ public class EditSneakerEntryActivity extends Activity {
 	private Sneaker mSneaker = new Sneaker();
 	private ImageView mThumbnail;
 
-	public static final String EDIT_NAME_EXTRA = "name";
-	public static final String EDIT_BRAND_EXTRA = "brand";
-	public static final String EDIT_SELLVAL_EXTRA = "sellval";
-	public static final String EDIT_CATEGORY_EXTRA = "categ";
-	public static final String EDIT_DESC_EXTRA = "desc";
-	public static final String EDIT_RARITY_EXTRA = "rare";
-
-	public static final String KEYEXTRA_NAME = "edit_name";
-	public static final String KEYEXTRA_BRAND = "edit_brand";
-	public static final String KEYEXTRA_RARITY = "edit_rarity";
-	public static final String KEYEXTRA_SELLVAL = "edit_selval";
-	public static final String KEYEXTRA_THUMBNAILID = "edit_thmbnlid";
 	public static final String KEYEXTRA_CATEGORY = "edit_categ";
-	public static final String KEYEXTRA_DESCRIPTION = "edit_desc";
 	public static final String KEYEXTRA_ID = "edit_id";
+
+	public static final String KEYEXTRA_SNK = "edit_snk";
 
 	private String id;
 
@@ -80,22 +70,26 @@ public class EditSneakerEntryActivity extends Activity {
 		SneakerDirectory.get(this).addSneaker(sneaker);
 	}
 
+	private void setSneakerValues(Sneaker sneaker) {
+		sneaker.setName(mName.getText().toString());
+		sneaker.setBrand(mBrand.getText().toString());
+		sneaker.setSellingValue(mSellVal.getText().toString());
+		sneaker.setRarity(mRarity.getText().toString());
+		sneaker.setDescription(mDesc.getText().toString());
+		sneaker.setCategory(mCategory.getText().toString());
+	}
+
 	private void setupEditView() {
 		final boolean isFromDetailActivity = getIntent().getBooleanExtra(
 				SneakerDetailsActivity.DETAILS_FROMDETAILS_EXTRA, false);
 		final boolean isFromListActivity = getIntent().getBooleanExtra(
 				SneakerEntryListActivity.LIST_FROMLIST_EXTRA, false);
 
-		mSneaker.setBrand(getIntent().getStringExtra(KEYEXTRA_BRAND));
-		mSneaker.setName(getIntent().getStringExtra(KEYEXTRA_NAME));
-		mSneaker.setRarity(getIntent().getStringExtra(KEYEXTRA_RARITY));
-		mSneaker.setSellingValue(getIntent().getStringExtra(KEYEXTRA_SELLVAL));
-		mSneaker.setThumbnailId(getIntent()
-				.getIntExtra(KEYEXTRA_THUMBNAILID, 0));
-		mSneaker.setCategory(getIntent().getStringExtra(KEYEXTRA_CATEGORY));
-		mSneaker.setDescription(getIntent()
-				.getStringExtra(KEYEXTRA_DESCRIPTION));
-		id = getIntent().getStringExtra(KEYEXTRA_ID);
+		Bundle mBundle = new Bundle();
+		mBundle = getIntent().getExtras();
+		mSneaker = (Sneaker) mBundle.getSerializable("editsneaker");
+		id = mSneaker.getId().toString();
+		Log.i("Edit", id.toString() + "\n" + mSneaker.getId().toString());
 
 		if (isFromDetailActivity || isFromListActivity) {
 
@@ -103,6 +97,7 @@ public class EditSneakerEntryActivity extends Activity {
 			Drawable imgDrawable = getResources().getDrawable(
 					mSneaker.getThumbnailId());
 			mThumbnail.setImageDrawable(imgDrawable);
+
 		}
 		mName.setText(mSneaker.getName());
 		mBrand.setText(mSneaker.getBrand());
@@ -117,35 +112,19 @@ public class EditSneakerEntryActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (isFromDetailActivity || isFromListActivity) {
-					if (isFromDetailActivity)
-						Log.i("ISFROMDETAIL", "FROM DETAIL");
-					else if (isFromListActivity)
-						Log.i("ISFROMLIST", "FROM LIST");
 					ArrayList<Sneaker> s = SneakerDirectory.get(
 							getApplicationContext()).getAllSneakers();
 					for (Sneaker ss : s) {
 						if (id.equals(ss.getId().toString())) {
-							ss.setName(mName.getText().toString());
-							ss.setBrand(mBrand.getText().toString());
-							ss.setSellingValue(mSellVal.getText().toString());
-							ss.setRarity(mRarity.getText().toString());
-							ss.setDescription(mDesc.getText().toString());
-							ss.setCategory(mCategory.getText().toString());
+							setSneakerValues(ss);
 							SneakerDirectory.get(getApplicationContext())
 									.saveSneakers();
 							Intent i = new Intent();
-							i.putExtra(EDIT_NAME_EXTRA, ss.getName().toString());
-							i.putExtra(EDIT_BRAND_EXTRA, ss.getBrand()
-									.toString());
-							i.putExtra(EDIT_SELLVAL_EXTRA, ss.getSellingValue()
-									.toString());
-							i.putExtra(EDIT_RARITY_EXTRA, ss.getRarity()
-									.toString());
-							i.putExtra(EDIT_CATEGORY_EXTRA, ss.getCategory()
-									.getName().toString());
-							i.putExtra(EDIT_DESC_EXTRA, ss.getDescription()
-									.toString());
+							Bundle sneakerBundle = new Bundle();
+							sneakerBundle.putSerializable("updatedsneaker", ss);
+							i.putExtra("updatedsneaker", sneakerBundle);
 							setResult(RESULT_OK, i);
+							finish();
 							break;
 						}
 					}
@@ -159,7 +138,6 @@ public class EditSneakerEntryActivity extends Activity {
 						Intent intent = new Intent();
 						setResult(RESULT_OK, intent);
 						finish();
-
 					}
 				}
 			}

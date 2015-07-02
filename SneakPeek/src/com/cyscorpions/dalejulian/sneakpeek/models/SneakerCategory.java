@@ -1,12 +1,17 @@
 package com.cyscorpions.dalejulian.sneakpeek.models;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SneakerCategory {
+public class SneakerCategory implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7962375902893222496L;
 	// JSON TAGS
 	private static final String JSON_ID = "id";
 	private static final String JSON_NAME = "name";

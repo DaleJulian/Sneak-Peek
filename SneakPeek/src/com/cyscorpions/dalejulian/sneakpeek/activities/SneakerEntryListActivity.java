@@ -31,21 +31,15 @@ public class SneakerEntryListActivity extends Activity implements
 	public static final int RECEIVE_NEW_ENTRY_REQUEST = 3;
 	public static final int RECEIVE_UPDATED_ENTRY_REQUEST = 2;
 
+	public static final String EXTRA_SER_SNEAKER = "sneakerentrylistactivity.sneakerbundle";
+
 	private ListView mEntryList;
 	private ArrayList<Sneaker> mSneakers;
 	private SneakerAdapter mAdapter;
 
-	public static final String LIST_NAME_EXTRA = "name";
-	public static final String LIST_BRAND_EXTRA = "brand";
-	public static final String LIST_SELLING_EXTRA = "selling";
-	public static final String LIST_RARITY_EXTRA = "rarity";
-	public static final String LIST_CATEGORY_EXTRA = "extra";
-	public static final String LIST_DESC_EXTRA = "desc";
-	public static final String LIST_IMGID_EXTRA = "img";
-	public static final String LIST_TITLE_EXTRA = "title";
-	public static final String LIST_ID_EXTRA = "id";
-	public static final String LIST_CATEGORY_EDIT_EXTRA = "editextra";
 	public static final String LIST_FROMLIST_EXTRA = "fromlist";
+
+	public static final String BUNDLETAG_SNEAKER = "detailsneaker";
 
 	private SneakerCategory mCategory = new SneakerCategory();
 
@@ -79,15 +73,9 @@ public class SneakerEntryListActivity extends Activity implements
 				.getTag(R.id.TAG_SNEAKER_OBJECT);
 		Intent i = new Intent(SneakerEntryListActivity.this,
 				SneakerDetailsActivity.class);
-		i.putExtra(LIST_NAME_EXTRA, selectedSneaker.getName());
-		i.putExtra(LIST_BRAND_EXTRA, selectedSneaker.getBrand());
-		i.putExtra(LIST_SELLING_EXTRA, selectedSneaker.getSellingValue());
-		i.putExtra(LIST_RARITY_EXTRA, selectedSneaker.getRarity());
-		i.putExtra(LIST_CATEGORY_EXTRA, selectedSneaker.getCategory().getName());
-		i.putExtra(LIST_DESC_EXTRA, selectedSneaker.getDescription());
-		i.putExtra(LIST_IMGID_EXTRA, selectedSneaker.getThumbnailId());
-		i.putExtra(LIST_TITLE_EXTRA, selectedSneaker.getTitleName());
-		i.putExtra(LIST_ID_EXTRA, selectedSneaker.getId().toString());
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(BUNDLETAG_SNEAKER, selectedSneaker);
+		i.putExtras(bundle);
 		startActivityForResult(i, RECEIVE_UPDATED_ENTRY_REQUEST);
 	}
 
@@ -146,22 +134,9 @@ public class SneakerEntryListActivity extends Activity implements
 		case R.id.menu_list_edit_sneaker:
 			Intent i = new Intent(SneakerEntryListActivity.this,
 					EditSneakerEntryActivity.class);
-			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_NAME,
-					sneaker.getName());
-			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_BRAND,
-					sneaker.getBrand());
-			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_SELLVAL,
-					sneaker.getSellingValue());
-			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_RARITY,
-					sneaker.getRarity());
-			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_CATEGORY, sneaker
-					.getCategory().getName().toString());
-			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_DESCRIPTION,
-					sneaker.getDescription());
-			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_THUMBNAILID,
-					sneaker.getThumbnailId());
-			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_ID, sneaker.getId()
-					.toString());
+			Bundle mBundle = new Bundle();
+			mBundle.putSerializable("editsneaker", sneaker);
+			i.putExtras(mBundle);
 			i.putExtra(LIST_FROMLIST_EXTRA, true);
 			startActivityForResult(i, RECEIVE_NEW_ENTRY_REQUEST);
 			break;
