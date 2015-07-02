@@ -27,8 +27,8 @@ import android.widget.ListView;
 
 public class SneakerEntryListActivity extends Activity implements
 		OnItemClickListener {
-	public static final int RECEIVE_NEW_ENTRY_REQUEST = 3;
-	public static final int RECEIVE_UPDATED_ENTRY_REQUEST = 2;
+	public static final int REQUEST_NEW_ENTRY_REQUEST = 3;
+	public static final int REQUEST_UPDATED_ENTRY_REQUEST = 2;
 	public static final String CATEGORY_EXTRA = "Category Extra";
 
 	public static final String EXTRA_SER_SNEAKER = "sneakerentrylistactivity.sneakerbundle";
@@ -38,8 +38,6 @@ public class SneakerEntryListActivity extends Activity implements
 	private SneakerAdapter mAdapter;
 
 	public static final String LIST_FROMLIST_EXTRA = "fromlist";
-
-	public static final String BUNDLETAG_SNEAKER = "detailsneaker";
 
 	private SneakerCategory mCategory = new SneakerCategory();
 
@@ -72,9 +70,10 @@ public class SneakerEntryListActivity extends Activity implements
 		Intent i = new Intent(SneakerEntryListActivity.this,
 				SneakerDetailsActivity.class);
 		Bundle bundle = new Bundle();
-		bundle.putSerializable(BUNDLETAG_SNEAKER, selectedSneaker);
+		bundle.putSerializable(SneakerDetailsActivity.BUNDLETAG_SNEAKER,
+				selectedSneaker);
 		i.putExtras(bundle);
-		startActivityForResult(i, RECEIVE_UPDATED_ENTRY_REQUEST);
+		startActivityForResult(i, REQUEST_UPDATED_ENTRY_REQUEST);
 	}
 
 	@Override
@@ -90,7 +89,7 @@ public class SneakerEntryListActivity extends Activity implements
 					EditSneakerEntryActivity.class);
 			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_CATEGORY,
 					this.mCategory.getName().toString());
-			startActivityForResult(i, RECEIVE_NEW_ENTRY_REQUEST);
+			startActivityForResult(i, REQUEST_NEW_ENTRY_REQUEST);
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -131,10 +130,10 @@ public class SneakerEntryListActivity extends Activity implements
 			Intent i = new Intent(SneakerEntryListActivity.this,
 					EditSneakerEntryActivity.class);
 			Bundle mBundle = new Bundle();
-			mBundle.putSerializable("editsneaker", sneaker);
+			mBundle.putSerializable(SneakerDetailsActivity.BUNDLETAG_SNEAKEROBJ, sneaker);
 			i.putExtras(mBundle);
 			i.putExtra(LIST_FROMLIST_EXTRA, true);
-			startActivityForResult(i, RECEIVE_NEW_ENTRY_REQUEST);
+			startActivityForResult(i, REQUEST_NEW_ENTRY_REQUEST);
 			break;
 		case R.id.menu_list_delete_sneaker:
 			SneakerDirectory.get(getApplicationContext())

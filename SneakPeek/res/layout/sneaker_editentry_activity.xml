@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,8 +13,7 @@
             android:layout_height="@dimen/img_sneaker_layout_h_w"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:src="@drawable/airjordan6db" />
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/txtSneakerName"
@@ -51,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/txtSneakerRarity"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="@dimen/sneaker_brand_marginLeft"
             android:hint="@string/selling_price_hint" />
 
         <EditText
@@ -61,7 +60,7 @@
             android:layout_below="@id/txtSneakerName"
             android:layout_centerHorizontal="true"
             android:hint="@string/shoe_categ_hint"
-            android:textSize="13sp" />
+            android:textSize="@dimen/sneaker_edit_txtsz" />
 
         <EditText
             android:id="@+id/txtSneakerDescription"

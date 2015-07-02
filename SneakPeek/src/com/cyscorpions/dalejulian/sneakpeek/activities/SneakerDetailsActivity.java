@@ -15,9 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SneakerDetailsActivity extends Activity {
-	public static final int RECEIVE_EDITED_DETAILS_REQUEST = 5;
+	public static final int REQUEST_EDITED_DETAILS_REQUEST = 5;
+
+	public static final String BUNDLETAG_SNEAKEROBJ = "updatedsneaker";
 
 	public static final String DETAILS_FROMDETAILS_EXTRA = "fromDetails";
+	public static final String BUNDLETAG_SNEAKER = "detailsneaker";
 
 	private TextView mName, mBrand, mSellValue, mRarity, mCategory, mDesc;
 	private ImageView mThumbnail;
@@ -46,8 +49,7 @@ public class SneakerDetailsActivity extends Activity {
 	private void setupContentByExtras() {
 
 		Bundle bundle = getIntent().getExtras();
-		sneaker = (Sneaker) bundle
-				.getSerializable(SneakerEntryListActivity.BUNDLETAG_SNEAKER);
+		sneaker = (Sneaker) bundle.getSerializable(BUNDLETAG_SNEAKER);
 		mName.setText(sneaker.getName());
 		mBrand.setText(sneaker.getBrand());
 		mSellValue.setText(sneaker.getSellingValue());
@@ -81,7 +83,7 @@ public class SneakerDetailsActivity extends Activity {
 			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_ID, sneaker.getId()
 					.toString());
 			i.putExtra(DETAILS_FROMDETAILS_EXTRA, true);
-			startActivityForResult(i, RECEIVE_EDITED_DETAILS_REQUEST);
+			startActivityForResult(i, REQUEST_EDITED_DETAILS_REQUEST);
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -89,16 +91,20 @@ public class SneakerDetailsActivity extends Activity {
 	@Override
 	public void onActivityResult(int resultCode, int requestCode, Intent data) {
 
-		if (requestCode == RECEIVE_EDITED_DETAILS_REQUEST) {
-			Sneaker s = (Sneaker) getIntent().getSerializableExtra(
-					"updatedsneaker");
-			mName.setText(s.getName());
-			mBrand.setText(s.getBrand());
-			mSellValue.setText(s.getSellingValue());
-			mRarity.setText(s.getRarity());
-			mCategory.setText(s.getCategory().getName().toString());
-			mDesc.setText(s.getDescription());
+		switch (requestCode) {
+		case REQUEST_EDITED_DETAILS_REQUEST:
+			if (resultCode == RESULT_OK) {
+				Sneaker s = (Sneaker) getIntent().getSerializableExtra(
+						BUNDLETAG_SNEAKEROBJ);
+				mName.setText(s.getName());
+				mBrand.setText(s.getBrand());
+				mSellValue.setText(s.getSellingValue());
+				mRarity.setText(s.getRarity());
+				mCategory.setText(s.getCategory().getName().toString());
+				mDesc.setText(s.getDescription());
+			} else if (resultCode == RESULT_CANCELED) {
+				//
+			}
 		}
-
 	}
 }

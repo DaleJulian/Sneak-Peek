@@ -19,5 +19,6 @@
     <dimen name="sneaker_shoeName">15sp</dimen>
     <dimen name="sneaker_marginTop">22dp</dimen>
     <dimen name="sneaker_categ_txtsz">13sp</dimen>
+    <dimen name="sneaker_edit_txtsz">13dp</dimen>
 
 </resources>
