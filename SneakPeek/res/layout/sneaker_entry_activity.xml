@@ -1,66 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
 
-    <ImageView
-        android:id="@+id/imgSneakerEntry"
-        android:layout_width="@dimen/img_sneaker_layout_h_w"
-        android:layout_height="@dimen/img_sneaker_layout_h_w"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:scaleType="fitCenter" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/txtSneakerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imgSneakerEntry"
-        android:layout_centerHorizontal="true"
-        android:textSize="@dimen/sneaker_name_txtsz" />
+        <ImageView
+            android:id="@+id/imgSneakerEntry"
+            android:layout_width="@dimen/img_sneaker_layout_h_w"
+            android:layout_height="@dimen/img_sneaker_layout_h_w"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:scaleType="fitCenter" />
 
-    <TextView
-        android:id="@+id/txtSneakerBrand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/txtSneakerName"
-        android:layout_marginLeft="@dimen/sneaker_brand_marginLeft"
-        android:layout_marginTop="@dimen/sneaker_brand_marginTop" />
+        <TextView
+            android:id="@+id/txtSneakerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgSneakerEntry"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/sneaker_name_txtsz" />
 
-    <TextView
-        android:id="@+id/txtSneakerRarity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/txtSneakerBrand"
-        android:layout_marginLeft="@dimen/sneaker_brand_marginLeft" />
+        <TextView
+            android:id="@+id/txtSneakerBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/txtSneakerName"
+            android:layout_marginLeft="@dimen/sneaker_brand_marginLeft"
+            android:layout_marginTop="@dimen/sneaker_brand_marginTop" />
 
-    <TextView
-        android:id="@+id/txtSellingValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/txtSneakerRarity"
-        android:layout_marginLeft="@dimen/sneaker_brand_marginLeft" />
+        <TextView
+            android:id="@+id/txtSneakerRarity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/txtSneakerBrand"
+            android:layout_marginLeft="@dimen/sneaker_brand_marginLeft" />
 
-    <TextView
-        android:id="@+id/txtSneakerCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtSneakerName"
-        android:layout_centerHorizontal="true"
-        android:textSize="@dimen/sneaker_categ_txtsz" />
+        <TextView
+            android:id="@+id/txtSellingValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/txtSneakerRarity"
+            android:layout_marginLeft="@dimen/sneaker_brand_marginLeft" />
 
-    <TextView
-        android:id="@+id/txtSneakerDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtSellingValue"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/sneaker_desc_sideMargin"
-        android:layout_marginRight="@dimen/sneaker_desc_sideMargin"
-        android:layout_marginTop="@dimen/sneaker_desc_marginTop" />
+        <TextView
+            android:id="@+id/txtSneakerCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSneakerName"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/sneaker_categ_txtsz" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/txtSneakerDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSellingValue"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/sneaker_desc_sideMargin"
+            android:layout_marginRight="@dimen/sneaker_desc_sideMargin"
+            android:layout_marginTop="@dimen/sneaker_desc_marginTop" />
+    </RelativeLayout>
+
+</ScrollView>

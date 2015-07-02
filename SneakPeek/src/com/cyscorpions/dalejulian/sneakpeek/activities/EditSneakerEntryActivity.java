@@ -11,6 +11,7 @@ import com.cyscorpions.dalejulian.sneakpeek.models.SneakerDirectory;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -87,7 +88,7 @@ public class EditSneakerEntryActivity extends Activity {
 
 		Bundle mBundle = new Bundle();
 		mBundle = getIntent().getExtras();
-		mSneaker = (Sneaker) mBundle.getSerializable("editsneaker");
+		mSneaker = (Sneaker) mBundle.getSerializable(SneakerDetailsActivity.BUNDLETAG_SNEAKEROBJ);
 
 		if (isFromDetailActivity || isFromListActivity) {
 			id = mSneaker.getId().toString();
@@ -100,9 +101,14 @@ public class EditSneakerEntryActivity extends Activity {
 			mRarity.setText(mSneaker.getRarity());
 			mDesc.setText(mSneaker.getDescription());
 			mCategory.setText(mSneaker.getCategory().getName().toString());
+			
 		} else {
 			mCategory.setText(getIntent().getStringExtra(KEYEXTRA_CATEGORY));
 		}
+		mCategory.setEnabled(false);
+		mCategory.setCursorVisible(false);
+		mCategory.setKeyListener(null);
+		mCategory.setBackgroundColor(Color.TRANSPARENT);
 
 		mSaveButton = (Button) findViewById(R.id.btnSaveData);
 		mSaveButton.setOnClickListener(new View.OnClickListener() {

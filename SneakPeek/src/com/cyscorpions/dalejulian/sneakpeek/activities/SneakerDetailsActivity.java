@@ -78,7 +78,7 @@ public class SneakerDetailsActivity extends Activity {
 			Intent i = new Intent(SneakerDetailsActivity.this,
 					EditSneakerEntryActivity.class);
 			Bundle bundle = new Bundle();
-			bundle.putSerializable("editsneaker", sneaker);
+			bundle.putSerializable(BUNDLETAG_SNEAKEROBJ, sneaker);
 			i.putExtras(bundle);
 			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_ID, sneaker.getId()
 					.toString());
