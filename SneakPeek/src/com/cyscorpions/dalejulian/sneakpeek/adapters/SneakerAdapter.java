@@ -19,9 +19,9 @@ import android.widget.TextView;
 
 public class SneakerAdapter extends ArrayAdapter<Sneaker> {
 	private Context mContext;
-	private int layoutResourceId;
 	private ArrayList<Sneaker> data;
-
+	private static int layoutResourceId = R.layout.sneaker_entry_listitem;
+	
 	// view holder
 	static class SneakerEntryHolder {
 		ImageView sneakerIcon;
@@ -29,11 +29,9 @@ public class SneakerAdapter extends ArrayAdapter<Sneaker> {
 		TextView sneakerDescription;
 	}
 
-	public SneakerAdapter(Context appContext, int layoutResourceId,
-			ArrayList<Sneaker> data) {
+	public SneakerAdapter(Context appContext, ArrayList<Sneaker> data) {
 		super(appContext, layoutResourceId, data);
 		this.mContext = appContext;
-		this.layoutResourceId = layoutResourceId;
 		this.data = data;
 	}
 

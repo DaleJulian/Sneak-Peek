@@ -55,8 +55,7 @@ public class SneakerEntryListActivity extends Activity implements
 				.getSneakersByCategory(mCategory.getName());
 
 		sortEntriesAlphabetically(mSneakers);
-		mAdapter = new SneakerAdapter(this, R.layout.sneaker_entry_listitem,
-				mSneakers);
+		mAdapter = new SneakerAdapter(this, mSneakers);
 		mEntryList = (ListView) findViewById(R.id.listSneakerEntries);
 		mEntryList.setAdapter(mAdapter);
 		mEntryList.setOnItemClickListener(this);

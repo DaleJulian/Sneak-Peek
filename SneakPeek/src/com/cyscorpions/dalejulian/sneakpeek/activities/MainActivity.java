@@ -32,8 +32,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		mCategories = CategoryDirectory.get(getApplicationContext())
 				.getCategories();
 
-		mAdapter = new SneakerCategoryAdapter(this,
-				R.layout.sneaker_category_listitem, mCategories);
+		mAdapter = new SneakerCategoryAdapter(this, mCategories);
 		mCategoryList = (ListView) findViewById(R.id.listSneakercategory);
 		mCategoryList.setAdapter(mAdapter);
 		mCategoryList.setOnItemClickListener(this);

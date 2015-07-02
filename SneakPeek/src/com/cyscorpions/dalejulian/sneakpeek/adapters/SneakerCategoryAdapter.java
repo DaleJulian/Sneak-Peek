@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class SneakerCategoryAdapter extends ArrayAdapter<SneakerCategory> {
 	private Context mContext;
-	private int layoutResourceId;
+	private static int layoutResourceId = R.layout.sneaker_category_listitem;
 	private ArrayList<SneakerCategory> data;
 
 	// view holder
@@ -23,11 +23,10 @@ public class SneakerCategoryAdapter extends ArrayAdapter<SneakerCategory> {
 		TextView categoryName, categoryDesc;
 	}
 
-	public SneakerCategoryAdapter(Context appContext, int layoutResourceId,
+	public SneakerCategoryAdapter(Context appContext,
 			ArrayList<SneakerCategory> data) {
 		super(appContext, layoutResourceId, data);
 		this.mContext = appContext;
-		this.layoutResourceId = layoutResourceId;
 		this.data = data;
 	}
 

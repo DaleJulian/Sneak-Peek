@@ -79,7 +79,6 @@ public class EditSneakerEntryActivity extends Activity {
 		sneaker.setCategory(mCategory.getText().toString());
 	}
 
-	@SuppressLint("NewApi")
 	private void setupEditView() {
 		final boolean isFromDetailActivity = getIntent().getBooleanExtra(
 				SneakerDetailsActivity.DETAILS_FROMDETAILS_EXTRA, false);
@@ -89,20 +88,23 @@ public class EditSneakerEntryActivity extends Activity {
 		Bundle mBundle = new Bundle();
 		mBundle = getIntent().getExtras();
 		mSneaker = (Sneaker) mBundle.getSerializable("editsneaker");
-		id = mSneaker.getId().toString();
+		if (isFromDetailActivity || isFromListActivity) {
+			id = mSneaker.getId().toString();
+		}
 
 		if (isFromDetailActivity || isFromListActivity) {
 			Drawable imgDrawable = ContextCompat.getDrawable(
 					getApplicationContext(), mSneaker.getThumbnailId());
 			mThumbnail.setImageDrawable(imgDrawable);
-
+			mName.setText(mSneaker.getName());
+			mBrand.setText(mSneaker.getBrand());
+			mSellVal.setText(mSneaker.getSellingValue());
+			mRarity.setText(mSneaker.getRarity());
+			mDesc.setText(mSneaker.getDescription());
+			mCategory.setText(mSneaker.getCategory().getName().toString());
+		} else {
+			mCategory.setText(getIntent().getStringExtra(KEYEXTRA_CATEGORY));
 		}
-		mName.setText(mSneaker.getName());
-		mBrand.setText(mSneaker.getBrand());
-		mSellVal.setText(mSneaker.getSellingValue());
-		mRarity.setText(mSneaker.getRarity());
-		mDesc.setText(mSneaker.getDescription());
-		mCategory.setText(mSneaker.getCategory().getName().toString());
 
 		mSaveButton = (Button) findViewById(R.id.btnSaveData);
 		mSaveButton.setOnClickListener(new View.OnClickListener() {
