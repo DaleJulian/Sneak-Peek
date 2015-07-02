@@ -4,10 +4,12 @@ import com.cyscorpions.dalejulian.sneakpeek.R;
 import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
 import com.cyscorpions.dalejulian.sneakpeek.models.SneakerDirectory;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,6 +45,7 @@ public class SneakerDetailsActivity extends Activity {
 		mThumbnail = (ImageView) findViewById(R.id.imgSneakerEntry);
 	}
 
+	@SuppressLint("NewApi")
 	private void setupContentByExtras() {
 
 		Bundle bundle = getIntent().getExtras();
@@ -56,8 +59,8 @@ public class SneakerDetailsActivity extends Activity {
 		mDesc.setText(sneaker.getDescription());
 		int imgResourceId = sneaker.getThumbnailId();
 		if (imgResourceId != 0) {
-			@SuppressWarnings("deprecation")
-			Drawable imageDrawable = getResources().getDrawable(imgResourceId);
+			Drawable imageDrawable = ContextCompat.getDrawable(
+					getApplicationContext(), imgResourceId);
 			mThumbnail.setImageDrawable(imageDrawable);
 		}
 	}

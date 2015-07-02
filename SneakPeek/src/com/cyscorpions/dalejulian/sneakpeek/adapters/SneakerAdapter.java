@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import com.cyscorpions.dalejulian.sneakpeek.R;
 import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,8 +60,7 @@ public class SneakerAdapter extends ArrayAdapter<Sneaker> {
 		Sneaker sneaker = data.get(position);
 		holder.sneakerName.setText(sneaker.getTitleName());
 		if (sneaker.getThumbnailId() != 0) {
-			@SuppressWarnings("deprecation")
-			Drawable imgDrawable = mContext.getResources().getDrawable(
+			Drawable imgDrawable = ContextCompat.getDrawable(mContext,
 					sneaker.getThumbnailId());
 			holder.sneakerIcon.setImageDrawable(imgDrawable);
 		}

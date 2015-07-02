@@ -8,10 +8,12 @@ import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
 import com.cyscorpions.dalejulian.sneakpeek.models.SneakerCategory;
 import com.cyscorpions.dalejulian.sneakpeek.models.SneakerDirectory;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +44,7 @@ public class EditSneakerEntryActivity extends Activity {
 		findResourceIds();
 		setupEditView();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		Log.i("Edit Activity", getCallingActivity().getClassName());	
+		Log.i("Edit Activity", getCallingActivity().getClassName());
 	}
 
 	public interface DataChangedListener {
@@ -79,6 +81,7 @@ public class EditSneakerEntryActivity extends Activity {
 		sneaker.setCategory(mCategory.getText().toString());
 	}
 
+	@SuppressLint("NewApi")
 	private void setupEditView() {
 		final boolean isFromDetailActivity = getIntent().getBooleanExtra(
 				SneakerDetailsActivity.DETAILS_FROMDETAILS_EXTRA, false);
@@ -92,10 +95,8 @@ public class EditSneakerEntryActivity extends Activity {
 		Log.i("Edit", id.toString() + "\n" + mSneaker.getId().toString());
 
 		if (isFromDetailActivity || isFromListActivity) {
-
-			@SuppressWarnings("deprecation")
-			Drawable imgDrawable = getResources().getDrawable(
-					mSneaker.getThumbnailId());
+			Drawable imgDrawable = ContextCompat.getDrawable(
+					getApplicationContext(), mSneaker.getThumbnailId());
 			mThumbnail.setImageDrawable(imgDrawable);
 
 		}
