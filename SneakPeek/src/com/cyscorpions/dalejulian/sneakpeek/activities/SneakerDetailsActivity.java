@@ -43,7 +43,6 @@ public class SneakerDetailsActivity extends Activity {
 		mThumbnail = (ImageView) findViewById(R.id.imgSneakerEntry);
 	}
 
-	@SuppressLint("NewApi")
 	private void setupContentByExtras() {
 
 		Bundle bundle = getIntent().getExtras();

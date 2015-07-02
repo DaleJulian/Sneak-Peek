@@ -29,6 +29,7 @@ public class SneakerEntryListActivity extends Activity implements
 		OnItemClickListener {
 	public static final int RECEIVE_NEW_ENTRY_REQUEST = 3;
 	public static final int RECEIVE_UPDATED_ENTRY_REQUEST = 2;
+	public static final String CATEGORY_EXTRA = "Category Extra";
 
 	public static final String EXTRA_SER_SNEAKER = "sneakerentrylistactivity.sneakerbundle";
 
@@ -47,8 +48,7 @@ public class SneakerEntryListActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sneaker_entry_listview);
 
-		mCategory.setName(getIntent().getStringExtra(
-				MainActivity.CATEGORY_EXTRA));
+		mCategory.setName(getIntent().getStringExtra(CATEGORY_EXTRA));
 		setTitle("Sneak Peek: " + mCategory.getName());
 
 		mSneakers = SneakerDirectory.get(getApplicationContext())
@@ -96,8 +96,8 @@ public class SneakerEntryListActivity extends Activity implements
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		sortEntriesAlphabetically(mSneakers);
+	protected void onResume() {
+		super.onResume();
 		updateList();
 	}
 
@@ -148,8 +148,7 @@ public class SneakerEntryListActivity extends Activity implements
 	private void sortEntriesAlphabetically(List<Sneaker> sneakerList) {
 		Collections.sort(sneakerList, new Comparator<Sneaker>() {
 			public int compare(Sneaker obj1, Sneaker obj2) {
-				return obj1.getTitleName().compareToIgnoreCase(
-						obj2.getTitleName());
+				return obj1.getName().compareToIgnoreCase(obj2.getName());
 			}
 		});
 	}

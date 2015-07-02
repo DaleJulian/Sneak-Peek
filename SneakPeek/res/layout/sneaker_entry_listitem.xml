@@ -16,8 +16,8 @@
 
     <TextView
         android:id="@+id/txtShoeName"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="@dimen/sneaker_txt_marginLeft"
         android:layout_marginTop="@dimen/sneaker_txtShoeName"
@@ -30,7 +30,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/txtShoeName"
-        android:layout_alignTop="@id/txtShoeName"
         android:layout_below="@id/txtShoeName"
         android:layout_marginTop="@dimen/sneaker_marginTop"
         android:text="@string/shoe_desc_text"

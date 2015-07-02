@@ -88,11 +88,9 @@ public class EditSneakerEntryActivity extends Activity {
 		Bundle mBundle = new Bundle();
 		mBundle = getIntent().getExtras();
 		mSneaker = (Sneaker) mBundle.getSerializable("editsneaker");
-		if (isFromDetailActivity || isFromListActivity) {
-			id = mSneaker.getId().toString();
-		}
 
 		if (isFromDetailActivity || isFromListActivity) {
+			id = mSneaker.getId().toString();
 			Drawable imgDrawable = ContextCompat.getDrawable(
 					getApplicationContext(), mSneaker.getThumbnailId());
 			mThumbnail.setImageDrawable(imgDrawable);

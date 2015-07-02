@@ -18,7 +18,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class MainActivity extends Activity implements OnItemClickListener {
-	public static final String CATEGORY_EXTRA = "Category Extra";
+	
 	private ListView mCategoryList;
 	private ArrayList<SneakerCategory> mCategories;
 	private SneakerCategoryAdapter mAdapter;
@@ -58,7 +58,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		Intent i = new Intent(MainActivity.this, SneakerEntryListActivity.class);
-		i.putExtra(CATEGORY_EXTRA, ((SneakerCategory) view
+		i.putExtra(SneakerEntryListActivity.CATEGORY_EXTRA, ((SneakerCategory) view
 				.getTag(R.id.TAG_CATEGORY_OBJECT)).getName().toString());
 
 		startActivity(i);
