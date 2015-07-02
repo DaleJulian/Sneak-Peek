@@ -5,12 +5,12 @@
 
     <ImageView
         android:id="@+id/imgSneakerEntry"
-        android:layout_width="400sp"
-        android:layout_height="400sp"
+        android:layout_width="@dimen/img_sneaker_layout_h_w"
+        android:layout_height="@dimen/img_sneaker_layout_h_w"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:src="@drawable/airjordan6db" />
+        android:scaleType="fitCenter" />
 
     <TextView
         android:id="@+id/txtSneakerName"
@@ -18,8 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imgSneakerEntry"
         android:layout_centerHorizontal="true"
-        android:text="Air Jordan 6 Doernbecher"
-        android:textSize="20sp" />
+        android:textSize="@dimen/sneaker_name_txtsz" />
 
     <TextView
         android:id="@+id/txtSneakerBrand"
@@ -27,9 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/txtSneakerName"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="34dp"
-        android:text="Manufacturer: Jordan Brand" />
+        android:layout_marginLeft="@dimen/sneaker_brand_marginLeft"
+        android:layout_marginTop="@dimen/sneaker_brand_marginTop" />
 
     <TextView
         android:id="@+id/txtSneakerRarity"
@@ -37,8 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/txtSneakerBrand"
-        android:layout_marginLeft="24dp"
-        android:text="Rarity: Hyperstrike" />
+        android:layout_marginLeft="@dimen/sneaker_brand_marginLeft" />
 
     <TextView
         android:id="@+id/txtSellingValue"
@@ -46,8 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/txtSneakerRarity"
-        android:layout_marginLeft="24dp"
-        android:text="Market Price: $2500" />
+        android:layout_marginLeft="@dimen/sneaker_brand_marginLeft" />
 
     <TextView
         android:id="@+id/txtSneakerCategory"
@@ -55,8 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtSneakerName"
         android:layout_centerHorizontal="true"
-        android:text="Basketball"
-        android:textSize="13sp" />
+        android:textSize="@dimen/sneaker_categ_txtsz" />
 
     <TextView
         android:id="@+id/txtSneakerDescription"
@@ -64,9 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtSellingValue"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="30dp"
-        android:text="A shoe designed by a kid with a chronic illness. All sales of this product goes to the Doernbecher Hospital." />
+        android:layout_marginLeft="@dimen/sneaker_desc_sideMargin"
+        android:layout_marginRight="@dimen/sneaker_desc_sideMargin"
+        android:layout_marginTop="@dimen/sneaker_desc_marginTop" />
 
 </RelativeLayout>

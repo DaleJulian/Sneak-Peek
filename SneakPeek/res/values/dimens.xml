@@ -5,18 +5,19 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="list_item_padding">10dp</dimen>
     <dimen name="description_text_size">12sp</dimen>
-	<dimen name="img_sneaker_layout_h_w">400sp</dimen>
-	<dimen name="sneaker_name_txtsz">20sp</dimen>
-	<dimen name="sneaker_brand_marginLeft">24dp</dimen>
-	<dimen name="sneaker_brand_marginTop">34dp</dimen>
-	<dimen name="sneaker_desc_sideMargin">15dp</dimen>
-	<dimen name="sneaker_desc_marginTop">30dp</dimen>
-	<dimen name="sneaker_list_marginTop">22dp</dimen>
-	<dimen name="sneaker_thumbnail_h_w">150sp</dimen>
-	<dimen name="sneaker_txtShoeName">15dp</dimen>
-	<dimen name="sneaker_txt_marginLeft">10dp</dimen>
-	<dimen name="sneaker_txtDesc_txtsz">11sp</dimen>
-	<dimen name="sneaker_shoeName">15sp</dimen>
-	<dimen name="sneaker_marginTop">22dp</dimen>
-	
+    <dimen name="img_sneaker_layout_h_w">400dp</dimen>
+    <dimen name="sneaker_name_txtsz">20sp</dimen>
+    <dimen name="sneaker_brand_marginLeft">24dp</dimen>
+    <dimen name="sneaker_brand_marginTop">34dp</dimen>
+    <dimen name="sneaker_desc_sideMargin">15dp</dimen>
+    <dimen name="sneaker_desc_marginTop">30dp</dimen>
+    <dimen name="sneaker_list_marginTop">22dp</dimen>
+    <dimen name="sneaker_thumbnail_h_w">150sp</dimen>
+    <dimen name="sneaker_txtShoeName">15dp</dimen>
+    <dimen name="sneaker_txt_marginLeft">10dp</dimen>
+    <dimen name="sneaker_txtDesc_txtsz">11sp</dimen>
+    <dimen name="sneaker_shoeName">15sp</dimen>
+    <dimen name="sneaker_marginTop">22dp</dimen>
+    <dimen name="sneaker_categ_txtsz">13sp</dimen>
+
 </resources>

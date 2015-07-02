@@ -42,7 +42,7 @@ public class EditSneakerEntryActivity extends Activity {
 		findResourceIds();
 		setupEditView();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		Log.i("Edit Activity", getCallingActivity().getClassName());
+		Log.i("Edit Activity", getCallingActivity().getClassName());	
 	}
 
 	public interface DataChangedListener {
