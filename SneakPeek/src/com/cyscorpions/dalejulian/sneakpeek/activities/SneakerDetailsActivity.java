@@ -2,7 +2,6 @@ package com.cyscorpions.dalejulian.sneakpeek.activities;
 
 import com.cyscorpions.dalejulian.sneakpeek.R;
 import com.cyscorpions.dalejulian.sneakpeek.models.Sneaker;
-import com.cyscorpions.dalejulian.sneakpeek.models.SneakerDirectory;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,7 +9,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -80,7 +78,6 @@ public class SneakerDetailsActivity extends Activity {
 					EditSneakerEntryActivity.class);
 			Bundle bundle = new Bundle();
 			bundle.putSerializable("editsneaker", sneaker);
-			Log.i("Detail", sneaker.getId().toString());
 			i.putExtras(bundle);
 			i.putExtra(EditSneakerEntryActivity.KEYEXTRA_ID, sneaker.getId()
 					.toString());
@@ -92,10 +89,7 @@ public class SneakerDetailsActivity extends Activity {
 
 	@Override
 	public void onActivityResult(int resultCode, int requestCode, Intent data) {
-		Log.i("SneakerDetails", "HOHO" + String.valueOf(requestCode));
 
-		if (data == null)
-			Log.i("null data", "null data");
 		if (requestCode == RECEIVE_EDITED_DETAILS_REQUEST) {
 			Sneaker s = (Sneaker) getIntent().getSerializableExtra(
 					"updatedsneaker");

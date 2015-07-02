@@ -14,7 +14,6 @@ import com.cyscorpions.dalejulian.sneakpeek.models.SneakerDirectory;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -99,8 +98,6 @@ public class SneakerEntryListActivity extends Activity implements
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Log.i("SneakerList", String.valueOf(requestCode));
-
 		sortEntriesAlphabetically(mSneakers);
 		updateList();
 	}

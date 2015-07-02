@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,7 +43,6 @@ public class EditSneakerEntryActivity extends Activity {
 		findResourceIds();
 		setupEditView();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		Log.i("Edit Activity", getCallingActivity().getClassName());
 	}
 
 	public interface DataChangedListener {
@@ -92,7 +90,6 @@ public class EditSneakerEntryActivity extends Activity {
 		mBundle = getIntent().getExtras();
 		mSneaker = (Sneaker) mBundle.getSerializable("editsneaker");
 		id = mSneaker.getId().toString();
-		Log.i("Edit", id.toString() + "\n" + mSneaker.getId().toString());
 
 		if (isFromDetailActivity || isFromListActivity) {
 			Drawable imgDrawable = ContextCompat.getDrawable(
